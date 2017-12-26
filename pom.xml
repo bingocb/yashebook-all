@@ -17,5 +17,6 @@
 		<module>yashebook-orders</module>
 		<module>yashebook-sms</module>
 		<module>yashebook-pay</module>
+		<module>yashebook-util</module>
 	</modules>
 </project>
