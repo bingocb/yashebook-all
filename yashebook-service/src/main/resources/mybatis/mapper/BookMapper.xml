@@ -1,0 +1,508 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yashebook.domain.mapper.BookMapper" >
+  <resultMap id="BaseResultMap" type="com.yashebook.domain.po.Book" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="isbn" property="isbn" jdbcType="VARCHAR" />
+    <result column="author" property="author" jdbcType="VARCHAR" />
+    <result column="author_introduction" property="authorIntroduction" jdbcType="VARCHAR" />
+    <result column="book_folio" property="bookFolio" jdbcType="VARCHAR" />
+    <result column="book_fonts" property="bookFonts" jdbcType="VARCHAR" />
+    <result column="book_name" property="bookName" jdbcType="VARCHAR" />
+    <result column="book_page" property="bookPage" jdbcType="VARCHAR" />
+    <result column="book_sn" property="bookSn" jdbcType="VARCHAR" />
+    <result column="book_version" property="bookVersion" jdbcType="VARCHAR" />
+    <result column="catalog" property="catalog" jdbcType="VARCHAR" />
+    <result column="comment" property="comment" jdbcType="VARCHAR" />
+    <result column="content" property="content" jdbcType="VARCHAR" />
+    <result column="content_introduction" property="contentIntroduction" jdbcType="VARCHAR" />
+    <result column="covers" property="covers" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="editor_recommend" property="editorRecommend" jdbcType="VARCHAR" />
+    <result column="is_full" property="isFull" jdbcType="INTEGER" />
+    <result column="material" property="material" jdbcType="VARCHAR" />
+    <result column="modify_time" property="modifyTime" jdbcType="TIMESTAMP" />
+    <result column="pack_type" property="packType" jdbcType="VARCHAR" />
+    <result column="press_name" property="pressName" jdbcType="VARCHAR" />
+    <result column="print_time" property="printTime" jdbcType="TIMESTAMP" />
+    <result column="publishing_time" property="publishingTime" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, isbn, author, author_introduction, book_folio, book_fonts, book_name, book_page, 
+    book_sn, book_version, catalog, comment, content, content_introduction, covers, create_time, 
+    editor_recommend, is_full, material, modify_time, pack_type, press_name, print_time, 
+    publishing_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.yashebook.domain.po.BookCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from ys_book
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="mysqlOffset != null and mysqlLength != null" >
+      <![CDATA[ limit #{mysqlOffset} , #{mysqlLength} ]]>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from ys_book
+    where id = #{id}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from ys_book
+    where id = #{id}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.yashebook.domain.po.BookCriteria" >
+    delete from ys_book
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.yashebook.domain.po.Book" >
+    insert into ys_book (id, isbn, author, author_introduction, book_folio, book_fonts, 
+      book_name, book_page, book_sn, book_version, catalog, comment, content, 
+      content_introduction, covers, create_time, editor_recommend, is_full, 
+      material, modify_time, pack_type, press_name, print_time, publishing_time
+      )
+    values (#{id}, #{isbn}, #{author}, #{authorIntroduction}, #{bookFolio}, #{bookFonts}, 
+      #{bookName}, #{bookPage}, #{bookSn}, #{bookVersion}, #{catalog}, #{comment}, #{content}, 
+      #{contentIntroduction}, #{covers}, #{createTime}, #{editorRecommend}, #{isFull}, 
+      #{material}, #{modifyTime}, #{packType}, #{pressName}, #{printTime}, #{publishingTime}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.yashebook.domain.po.Book" >
+    insert into ys_book
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="isbn != null" >
+        isbn,
+      </if>
+      <if test="author != null" >
+        author,
+      </if>
+      <if test="authorIntroduction != null" >
+        author_introduction,
+      </if>
+      <if test="bookFolio != null" >
+        book_folio,
+      </if>
+      <if test="bookFonts != null" >
+        book_fonts,
+      </if>
+      <if test="bookName != null" >
+        book_name,
+      </if>
+      <if test="bookPage != null" >
+        book_page,
+      </if>
+      <if test="bookSn != null" >
+        book_sn,
+      </if>
+      <if test="bookVersion != null" >
+        book_version,
+      </if>
+      <if test="catalog != null" >
+        catalog,
+      </if>
+      <if test="comment != null" >
+        comment,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+      <if test="contentIntroduction != null" >
+        content_introduction,
+      </if>
+      <if test="covers != null" >
+        covers,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="editorRecommend != null" >
+        editor_recommend,
+      </if>
+      <if test="isFull != null" >
+        is_full,
+      </if>
+      <if test="material != null" >
+        material,
+      </if>
+      <if test="modifyTime != null" >
+        modify_time,
+      </if>
+      <if test="packType != null" >
+        pack_type,
+      </if>
+      <if test="pressName != null" >
+        press_name,
+      </if>
+      <if test="printTime != null" >
+        print_time,
+      </if>
+      <if test="publishingTime != null" >
+        publishing_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id},
+      </if>
+      <if test="isbn != null" >
+        #{isbn},
+      </if>
+      <if test="author != null" >
+        #{author},
+      </if>
+      <if test="authorIntroduction != null" >
+        #{authorIntroduction},
+      </if>
+      <if test="bookFolio != null" >
+        #{bookFolio},
+      </if>
+      <if test="bookFonts != null" >
+        #{bookFonts},
+      </if>
+      <if test="bookName != null" >
+        #{bookName},
+      </if>
+      <if test="bookPage != null" >
+        #{bookPage},
+      </if>
+      <if test="bookSn != null" >
+        #{bookSn},
+      </if>
+      <if test="bookVersion != null" >
+        #{bookVersion},
+      </if>
+      <if test="catalog != null" >
+        #{catalog},
+      </if>
+      <if test="comment != null" >
+        #{comment},
+      </if>
+      <if test="content != null" >
+        #{content},
+      </if>
+      <if test="contentIntroduction != null" >
+        #{contentIntroduction},
+      </if>
+      <if test="covers != null" >
+        #{covers},
+      </if>
+      <if test="createTime != null" >
+        #{createTime},
+      </if>
+      <if test="editorRecommend != null" >
+        #{editorRecommend},
+      </if>
+      <if test="isFull != null" >
+        #{isFull},
+      </if>
+      <if test="material != null" >
+        #{material},
+      </if>
+      <if test="modifyTime != null" >
+        #{modifyTime},
+      </if>
+      <if test="packType != null" >
+        #{packType},
+      </if>
+      <if test="pressName != null" >
+        #{pressName},
+      </if>
+      <if test="printTime != null" >
+        #{printTime},
+      </if>
+      <if test="publishingTime != null" >
+        #{publishingTime},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.yashebook.domain.po.BookCriteria" resultType="java.lang.Integer" >
+    select count(*) from ys_book
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update ys_book
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id},
+      </if>
+      <if test="record.isbn != null" >
+        isbn = #{record.isbn},
+      </if>
+      <if test="record.author != null" >
+        author = #{record.author},
+      </if>
+      <if test="record.authorIntroduction != null" >
+        author_introduction = #{record.authorIntroduction},
+      </if>
+      <if test="record.bookFolio != null" >
+        book_folio = #{record.bookFolio},
+      </if>
+      <if test="record.bookFonts != null" >
+        book_fonts = #{record.bookFonts},
+      </if>
+      <if test="record.bookName != null" >
+        book_name = #{record.bookName},
+      </if>
+      <if test="record.bookPage != null" >
+        book_page = #{record.bookPage},
+      </if>
+      <if test="record.bookSn != null" >
+        book_sn = #{record.bookSn},
+      </if>
+      <if test="record.bookVersion != null" >
+        book_version = #{record.bookVersion},
+      </if>
+      <if test="record.catalog != null" >
+        catalog = #{record.catalog},
+      </if>
+      <if test="record.comment != null" >
+        comment = #{record.comment},
+      </if>
+      <if test="record.content != null" >
+        content = #{record.content},
+      </if>
+      <if test="record.contentIntroduction != null" >
+        content_introduction = #{record.contentIntroduction},
+      </if>
+      <if test="record.covers != null" >
+        covers = #{record.covers},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime},
+      </if>
+      <if test="record.editorRecommend != null" >
+        editor_recommend = #{record.editorRecommend},
+      </if>
+      <if test="record.isFull != null" >
+        is_full = #{record.isFull},
+      </if>
+      <if test="record.material != null" >
+        material = #{record.material},
+      </if>
+      <if test="record.modifyTime != null" >
+        modify_time = #{record.modifyTime},
+      </if>
+      <if test="record.packType != null" >
+        pack_type = #{record.packType},
+      </if>
+      <if test="record.pressName != null" >
+        press_name = #{record.pressName},
+      </if>
+      <if test="record.printTime != null" >
+        print_time = #{record.printTime},
+      </if>
+      <if test="record.publishingTime != null" >
+        publishing_time = #{record.publishingTime},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update ys_book
+    set id = #{record.id},
+      isbn = #{record.isbn},
+      author = #{record.author},
+      author_introduction = #{record.authorIntroduction},
+      book_folio = #{record.bookFolio},
+      book_fonts = #{record.bookFonts},
+      book_name = #{record.bookName},
+      book_page = #{record.bookPage},
+      book_sn = #{record.bookSn},
+      book_version = #{record.bookVersion},
+      catalog = #{record.catalog},
+      comment = #{record.comment},
+      content = #{record.content},
+      content_introduction = #{record.contentIntroduction},
+      covers = #{record.covers},
+      create_time = #{record.createTime},
+      editor_recommend = #{record.editorRecommend},
+      is_full = #{record.isFull},
+      material = #{record.material},
+      modify_time = #{record.modifyTime},
+      pack_type = #{record.packType},
+      press_name = #{record.pressName},
+      print_time = #{record.printTime},
+      publishing_time = #{record.publishingTime}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yashebook.domain.po.Book" >
+    update ys_book
+    <set >
+      <if test="isbn != null" >
+        isbn = #{isbn},
+      </if>
+      <if test="author != null" >
+        author = #{author},
+      </if>
+      <if test="authorIntroduction != null" >
+        author_introduction = #{authorIntroduction},
+      </if>
+      <if test="bookFolio != null" >
+        book_folio = #{bookFolio},
+      </if>
+      <if test="bookFonts != null" >
+        book_fonts = #{bookFonts},
+      </if>
+      <if test="bookName != null" >
+        book_name = #{bookName},
+      </if>
+      <if test="bookPage != null" >
+        book_page = #{bookPage},
+      </if>
+      <if test="bookSn != null" >
+        book_sn = #{bookSn},
+      </if>
+      <if test="bookVersion != null" >
+        book_version = #{bookVersion},
+      </if>
+      <if test="catalog != null" >
+        catalog = #{catalog},
+      </if>
+      <if test="comment != null" >
+        comment = #{comment},
+      </if>
+      <if test="content != null" >
+        content = #{content},
+      </if>
+      <if test="contentIntroduction != null" >
+        content_introduction = #{contentIntroduction},
+      </if>
+      <if test="covers != null" >
+        covers = #{covers},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime},
+      </if>
+      <if test="editorRecommend != null" >
+        editor_recommend = #{editorRecommend},
+      </if>
+      <if test="isFull != null" >
+        is_full = #{isFull},
+      </if>
+      <if test="material != null" >
+        material = #{material},
+      </if>
+      <if test="modifyTime != null" >
+        modify_time = #{modifyTime},
+      </if>
+      <if test="packType != null" >
+        pack_type = #{packType},
+      </if>
+      <if test="pressName != null" >
+        press_name = #{pressName},
+      </if>
+      <if test="printTime != null" >
+        print_time = #{printTime},
+      </if>
+      <if test="publishingTime != null" >
+        publishing_time = #{publishingTime},
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yashebook.domain.po.Book" >
+    update ys_book
+    set isbn = #{isbn},
+      author = #{author},
+      author_introduction = #{authorIntroduction},
+      book_folio = #{bookFolio},
+      book_fonts = #{bookFonts},
+      book_name = #{bookName},
+      book_page = #{bookPage},
+      book_sn = #{bookSn},
+      book_version = #{bookVersion},
+      catalog = #{catalog},
+      comment = #{comment},
+      content = #{content},
+      content_introduction = #{contentIntroduction},
+      covers = #{covers},
+      create_time = #{createTime},
+      editor_recommend = #{editorRecommend},
+      is_full = #{isFull},
+      material = #{material},
+      modify_time = #{modifyTime},
+      pack_type = #{packType},
+      press_name = #{pressName},
+      print_time = #{printTime},
+      publishing_time = #{publishingTime}
+    where id = #{id}
+  </update>
+</mapper>

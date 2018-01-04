@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+	<classPathEntry location="F:/app/apache-maven-2.2.1/repo-cnwap12/com/mysql/mysql-connector/5.0.7/mysql-connector-5.0.7-bin.jar" />
+	<!-- db_88in -->
+	<context id="db_88in"  targetRuntime="MyBatis3" defaultModelType="flat">
+		<plugin type="org.mybatis.generator.plugins.EqualsHashCodePlugin" />
+		<plugin type="org.mybatis.generator.plugins.RenameExampleClassPlugin">
+			<property name="searchString" value="Example$" />
+			<property name="replaceString" value="Criteria" />
+		</plugin>
+		<plugin type="org.mybatis.generator.plugins.SerializablePlugin" />
+		<plugin type="org.mybatis.generator.plugins.ToStringPlugin" />
+		<plugin type="org.mybatis.generator.plugins.MysqlPaginationPlugin" />
+		
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://mysql01.hx:3306/db_88in?characterEncoding=UTF-8" userId="root" password="abc!@#" />
+		<javaModelGenerator  targetPackage="com.hongxu.commons.domain.db88in.po" targetProject="D:/svnroot/hx-domain/src/main/java"/>
+		<sqlMapGenerator targetPackage="mybatis.db88in"  targetProject="D:/svnroot/hx-domain/src/main/resources"/>
+		<javaClientGenerator  targetPackage="com.hongxu.commons.domain.db88in.mapper"  type="XMLMAPPER" targetProject="D:/svnroot/hx-domain/src/main/java"/>
+		<!--  
+		<table domainObjectName="O2oMediaType" tableName="o2o_media_type" />
+		<table domainObjectName="O2oRegion" tableName="o2o_region" />
+		<table domainObjectName="O2oUser" tableName="o2o_user" />		
+		<table domainObjectName="O2oImages" tableName="o2o_images" />
+		<table domainObjectName="O2oMessage" tableName="o2o_message" />
+		<table domainObjectName="O2oAds" tableName="o2o_ads" />
+		<table domainObjectName="O2oMedia" tableName="o2o_media" />
+		<table domainObjectName="O2oAdsOrderAction" tableName="o2o_ads_order_action" />
+		<table domainObjectName="O2oAdsOrder" tableName="o2o_ads_order" />
+		<table domainObjectName="O2oAdsPlan" tableName="o2o_ads_plan" />
+		-->
+		<!--
+		<table domainObjectName="IcInfo" tableName="ic_info" />
+		
+		<table domainObjectName="IcInfoCoupon" tableName="ic_info_coupon" />
+		-->
+		<!--
+		<table domainObjectName="IcInfoLinks" tableName="ic_info_links" />
+		
+		<table domainObjectName="BusinessCardBasic" tableName="business_card_basic" />
+		
+		<table domainObjectName="BusinessCardContact" tableName="business_card_contact" />
+		<table domainObjectName="BusinessCardLinks" tableName="business_card_links" />
+		
+		<table domainObjectName="MobileIconLibrary" tableName="mobile_icon_library" />
+		
+		<table domainObjectName="AbmAlbum" tableName="abm_album" />
+		<table domainObjectName="AbmPhoto" tableName="abm_photo" />
+		
+		<table domainObjectName="TpCustomer" tableName="tp_customer" />
+		-->
+		<table domainObjectName="AlbumCustomerRel" tableName="tbl_album_customer_rel" />
+	</context>
+	
+	<!-- db_marketing -->
+	<context id="db_marketing"  targetRuntime="MyBatis3" defaultModelType="flat">
+		<plugin type="org.mybatis.generator.plugins.EqualsHashCodePlugin" />
+		<plugin type="org.mybatis.generator.plugins.RenameExampleClassPlugin">
+			<property name="searchString" value="Example$" />
+			<property name="replaceString" value="Criteria" />
+		</plugin>
+		<plugin type="org.mybatis.generator.plugins.SerializablePlugin" />
+		<plugin type="org.mybatis.generator.plugins.ToStringPlugin" />
+		<plugin type="org.mybatis.generator.plugins.MysqlPaginationPlugin" />
+		
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://mysql01.hx:3306/db_marketing?characterEncoding=UTF-8" userId="root" password="abc!@#" />
+		<javaModelGenerator  targetPackage="com.hongxu.commons.domain.marketing.po" targetProject="F:/development/workspaces/commons/hx-domain/src/main/java"/>
+		<sqlMapGenerator targetPackage="mybatis.marketing"  targetProject="F:/development/workspaces/commons/hx-domain/src/main/resources"/>
+		<javaClientGenerator  targetPackage="com.hongxu.commons.domain.marketing.mapper"  type="XMLMAPPER" targetProject="F:/development/workspaces/commons/hx-domain/src/main/java"/>
+		<!--  
+		<table domainObjectName="BusinessCardBasic" tableName="business_card_basic" />
+		<table domainObjectName="BusinessCardContact" tableName="business_card_contact" />
+		<table domainObjectName="BusinessCardLinks" tableName="business_card_links" />
+		
+		<table domainObjectName="MobileUserView" tableName="mobile_user_view" />
+		<table domainObjectName="MobileUserViewItem" tableName="mobile_user_view_item" />
+		<table domainObjectName="BusinessCardCustomerRel" tableName="business_card_customer_rel" />
+		
+		<table domainObjectName="MobileUserViewCustomerRel" tableName="mobile_user_view_customer_rel" />
+		-->
+		<table domainObjectName="UnicomActivity" tableName="unicom_activity" />
+		<table domainObjectName="UnicomCategory" tableName="unicom_category" />
+		<table domainObjectName="UnicomCompany" tableName="unicom_company" />
+		<table domainObjectName="UnicomRank" tableName="unicom_rank" />
+	</context>
+	
+	<!-- db_customer -->
+	<context id="db_customer"  targetRuntime="MyBatis3" defaultModelType="flat">
+		<plugin type="org.mybatis.generator.plugins.EqualsHashCodePlugin" />
+		<plugin type="org.mybatis.generator.plugins.RenameExampleClassPlugin">
+			<property name="searchString" value="Example$" />
+			<property name="replaceString" value="Criteria" />
+		</plugin>
+		<plugin type="org.mybatis.generator.plugins.SerializablePlugin" />
+		<plugin type="org.mybatis.generator.plugins.ToStringPlugin" />
+		<plugin type="org.mybatis.generator.plugins.MysqlPaginationPlugin" />
+		
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://mysql01.hx:3306/db_customer?characterEncoding=UTF-8" userId="root" password="abc!@#" />
+		<javaModelGenerator  targetPackage="com.hongxu.commons.domain.customer.po" targetProject="D:/svnroot/hx-domain/src/main/java"/>
+		<sqlMapGenerator targetPackage="mybatis.customer"  targetProject="D:/svnroot/hx-domain/src/main/resources"/>
+		<javaClientGenerator  targetPackage="com.hongxu.commons.domain.customer.mapper"  type="XMLMAPPER" targetProject="D:/svnroot/hx-domain/src/main/java"/>
+		<!--  
+		<table domainObjectName="RelCustomerProduct" tableName="rel_customer_product" />
+		<table domainObjectName="Consum" tableName="tbl_consum">
+			<columnOverride column="new" property="_new"/>
+		</table>
+		<table domainObjectName="ConsumLog" tableName="tbl_consum_log" />
+		<table domainObjectName="Customer" tableName="tbl_Customer" />
+		<table domainObjectName="Product" tableName="tbl_product" />
+		-->
+		<table domainObjectName="ServiceReg" tableName="tbl_service_reg" />
+	</context>
+	
+	<!-- db_sso -->
+	<context id="db_sso"  targetRuntime="MyBatis3" defaultModelType="flat">
+		<plugin type="org.mybatis.generator.plugins.EqualsHashCodePlugin" />
+		<plugin type="org.mybatis.generator.plugins.RenameExampleClassPlugin">
+			<property name="searchString" value="Example$" />
+			<property name="replaceString" value="Criteria" />
+		</plugin>
+		<plugin type="org.mybatis.generator.plugins.SerializablePlugin" />
+		<plugin type="org.mybatis.generator.plugins.ToStringPlugin" />
+		<plugin type="org.mybatis.generator.plugins.MysqlPaginationPlugin" />
+		
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://mysql01.hx:3306/db_sso?characterEncoding=UTF-8" userId="root" password="abc!@#" />
+		<javaModelGenerator  targetPackage="com.hongxu.commons.domain.sso.po" targetProject="D:/sourcecode/java/hx-domain/src/main/java"/>
+		<sqlMapGenerator targetPackage="mybatis.sso"  targetProject="D:/sourcecode/java/hx-domain/src/main/resources"/>
+		<javaClientGenerator  targetPackage="com.hongxu.commons.domain.sso.mapper"  type="XMLMAPPER" targetProject="D:/sourcecode/java/hx-domain/src/main/java"/>
+		
+		<table domainObjectName="SsoToken" tableName="tbl_token" />
+		<table domainObjectName="SsoUser" tableName="tbl_user" />
+	</context>
+	
+	<!-- db_p1p -->
+	<context id="db_p1p"  targetRuntime="MyBatis3" defaultModelType="flat">
+		<plugin type="org.mybatis.generator.plugins.EqualsHashCodePlugin" />
+		<plugin type="org.mybatis.generator.plugins.RenameExampleClassPlugin">
+			<property name="searchString" value="Example$" />
+			<property name="replaceString" value="Criteria" />
+		</plugin>
+		<plugin type="org.mybatis.generator.plugins.SerializablePlugin" />
+		<plugin type="org.mybatis.generator.plugins.ToStringPlugin" />
+		<plugin type="org.mybatis.generator.plugins.MysqlPaginationPlugin" />
+		
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://mysql01.hx:3306/db_p1p?characterEncoding=UTF-8" userId="root" password="abc!@#" />
+		<javaModelGenerator  targetPackage="com.hongxu.commons.domain.p1p.po" targetProject="D:/sourcecode/java/hx-domain/src/main/java"/>
+		<sqlMapGenerator targetPackage="mybatis.p1p"  targetProject="D:/sourcecode/java/hx-domain/src/main/resources"/>
+		<javaClientGenerator  targetPackage="com.hongxu.commons.domain.p1p.mapper"  type="XMLMAPPER" targetProject="D:/sourcecode/java/hx-domain/src/main/java"/>
+		
+		<table domainObjectName="B2cGoods" tableName="b2c_goods" />
+	</context>
+	
+	<!-- db_qrcode -->
+	<context id="db_qrcode"  targetRuntime="MyBatis3" defaultModelType="flat">
+		<plugin type="org.mybatis.generator.plugins.EqualsHashCodePlugin" />
+		<plugin type="org.mybatis.generator.plugins.RenameExampleClassPlugin">
+			<property name="searchString" value="Example$" />
+			<property name="replaceString" value="Criteria" />
+		</plugin>
+		<plugin type="org.mybatis.generator.plugins.SerializablePlugin" />
+		<plugin type="org.mybatis.generator.plugins.ToStringPlugin" />
+		<plugin type="org.mybatis.generator.plugins.MysqlPaginationPlugin" />
+		
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://mysql01.hx:3306/db_qrcode?characterEncoding=UTF-8" userId="root" password="abc!@#" />
+		<javaModelGenerator  targetPackage="com.hongxu.commons.domain.qrcode.po" targetProject="F:/development/workspaces/commons/hx-domain/src/main/java"/>
+		<sqlMapGenerator targetPackage="mybatis.qrcode"  targetProject="F:/development/workspaces/commons/hx-domain/src/main/resources"/>
+		<javaClientGenerator  targetPackage="com.hongxu.commons.domain.qrcode.mapper"  type="XMLMAPPER" targetProject="F:/development/workspaces/commons/hx-domain/src/main/java"/>
+		<!-- 
+		<table domainObjectName="Activies" tableName="tbl_activies" />
+		<table domainObjectName="ActiviesPt1" tableName="tbl_activies_pt1" />
+		<table domainObjectName="ActiviesPt2" tableName="tbl_activies_pt2" />
+		<table domainObjectName="ActiviesPt3" tableName="tbl_activies_pt3" />
+		<table domainObjectName="BatchProduction" tableName="tbl_BatchProduction" />
+		
+		
+		<table domainObjectName="CouponAttr" tableName="tbl_coupon_attr" />
+		<table domainObjectName="CouponLog" tableName="tbl_coupon_log" />
+		<table domainObjectName="CouponPool" tableName="tbl_coupon_pool" />
+		<table domainObjectName="CouponTerminalReg" tableName="tbl_coupon_terminal_reg" />
+		<table domainObjectName="Effect" tableName="tbl_Effect" />
+		<table domainObjectName="Images" tableName="tbl_images" />
+		<table domainObjectName="Qrcode" tableName="tbl_qrcode" />
+		<table domainObjectName="SecurityQrcode" tableName="tbl_SecurityQrcode" />
+		<table domainObjectName="Template" tableName="tbl_template" />
+		<table domainObjectName="TemplateRelationship" tableName="tbl_TemplateRelationship" />
+		<table domainObjectName="UrlRedirectQrcode" tableName="tbl_UrlRedirectQrcode" />
+		<table domainObjectName="Voucher" tableName="tbl_voucher" />
+		<table domainObjectName="VoucherLog" tableName="tbl_voucherLog" />
+		<table domainObjectName="SystemConfig" tableName="tbl_system_config" />
+		
+		<table domainObjectName="CompanyIntroduction" tableName="tbl_company_introduction" />
+		
+		<table domainObjectName="QrcodeClass" tableName="tbl_Class" />
+		
+		<table domainObjectName="CouponLog" tableName="tbl_coupon_log" />
+		
+		
+		
+		<table domainObjectName="CompanyIntroductionCustomerRel" tableName="tbl_company_introduction_customer_rel" />
+		
+		<table domainObjectName="CouponMobileUser" tableName="tbl_coupon_mobile_user" />
+		-->
+		<table domainObjectName="ElectricalCoupon" tableName="tbl_e_coupon" />
+		<table domainObjectName="ElecImageCoupon" tableName="tbl_image_coupon" />
+	</context>
+</generatorConfiguration>
+

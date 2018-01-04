@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration>
+
+    <classPathEntry location="/Users/binchen/.m2/repository/mysql/mysql-connector-java/5.1.34/mysql-connector-java-5.1.34.jar"/>
+
+    <context id="yashebook">
+        <plugin type="org.mybatis.generator.plugins.EqualsHashCodePlugin"/>
+        <plugin type="org.mybatis.generator.plugins.RenameExampleClassPlugin">
+            <property name="searchString" value="Example$"/>
+            <property name="replaceString" value="Criteria"/>
+        </plugin>
+        <plugin type="org.mybatis.generator.plugins.SerializablePlugin"/>
+        <plugin type="org.mybatis.generator.plugins.ToStringPlugin"/>
+        <plugin type="org.mybatis.generator.plugins.MysqlPaginationPlugin"/>
+
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://127.0.0.1:3306/yashebookstore?characterEncoding=UTF-8" userId="root" password="123456"/>
+
+        <javaModelGenerator targetPackage="com.yashebook.domain.po" targetProject="/Users/binchen/IdeaProjects/GitHub/yashebook-all/yashebook-service/src/main/java"/>
+        <sqlMapGenerator targetPackage="mybatis.mapper" targetProject="/Users/binchen/IdeaProjects/GitHub/yashebook-all/yashebook-service/src/main/resources"/>
+        <javaClientGenerator targetPackage="com.yashebook.domain.mapper" targetProject="/Users/binchen/IdeaProjects/GitHub/yashebook-all/yashebook-service/src/main/java" type="XMLMAPPER"/>
+        <!--
+        <table domainObjectName="MoveTask" tableName="move_task"/>
+        <table domainObjectName="MoveTaskItem" tableName="move_task_item"/>
+        <table domainObjectName="MoveTaskLog" tableName="move_task_log"/>
+        <table domainObjectName="CloudFilePo" tableName="cloud_file_list"/>
+        -->
+        <table domainObjectName="Book" tableName="ys_book"/>
+
+    </context>
+
+
+</generatorConfiguration>

@@ -1,6 +1,7 @@
 package com.yashebook.rpc;
 
 import com.yashebook.service.MainService;
+import com.yashebook.utils.SpringUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.thrift.TException;
 import org.apache.thrift.protocol.TBinaryProtocol;
@@ -41,7 +42,7 @@ public class Server extends Thread{
         @Override
         public String call(String licence, String sn, String content) throws TException {
             try {
-                MainService service = new MainService();
+                MainService service = SpringUtils.getBean(MainService.class);
                 return service.call(content);
             } catch (Exception e) {
                 e.printStackTrace();

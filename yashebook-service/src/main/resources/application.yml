@@ -6,7 +6,17 @@ spring:
     username: root
     password: 123456
     driver-class-name: com.mysql.jdbc.Driver
-  jpa:
-    show-sql: true
-    hibernate:
-      ddl-auto: update
+    type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+      connection-timeout: 30000
+      data-source-properties:
+        cachePrepStmts: true
+        prepStmtCacheSize: 250
+        prepStmtCacheSqlLimit: 2048
+        useServerPrepStmts: true
+      maxLifetime: 1765000
+      maximumPoolSize: 15
+      idle-timeout: 600000
+mybatis:
+  typeAliasesPackage: com.yashebook.domain.mapper
+  mapperLocations: classpath:/mybatis/mapper/*.xml

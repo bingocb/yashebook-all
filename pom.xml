@@ -18,5 +18,7 @@
 		<module>yashebook-sms</module>
 		<module>yashebook-pay</module>
 		<module>yashebook-util</module>
+		<module>yashebook-bms</module>
+		<module>mybatis-generator-core</module>
 	</modules>
 </project>
