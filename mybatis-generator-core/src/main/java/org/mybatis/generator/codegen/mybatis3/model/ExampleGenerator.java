@@ -65,7 +65,7 @@ public class ExampleGenerator extends AbstractJavaGenerator {
 		topLevelClass.addJavaDocLine("/**");
 		topLevelClass.addJavaDocLine("* " + type.getShortName() + " 条件查询类.");
 		topLevelClass.addJavaDocLine("* ");
-		topLevelClass.addJavaDocLine("* @author liangc [cc14514@icloud.com]");
+		topLevelClass.addJavaDocLine("* @author chenbin");
 		topLevelClass.addJavaDocLine("* @version v1.0");
 		topLevelClass.addJavaDocLine("* @copy pet");
 		topLevelClass.addJavaDocLine("* @date " + new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));

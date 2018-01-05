@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yashebook.domain.mapper.UserAddressMapper" >
+  <resultMap id="BaseResultMap" type="com.yashebook.domain.po.UserAddress" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="area_id" property="areaId" jdbcType="VARCHAR" />
+    <result column="area_id_path" property="areaIdPath" jdbcType="VARCHAR" />
+    <result column="consignee_name" property="consigneeName" jdbcType="VARCHAR" />
+    <result column="consignee_phone" property="consigneePhone" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="delete_flag" property="deleteFlag" jdbcType="INTEGER" />
+    <result column="is_default" property="isDefault" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, address, area_id, area_id_path, consignee_name, consignee_phone, create_time, 
+    delete_flag, is_default, user_id
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.yashebook.domain.po.UserAddressCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from ys_user_address
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="mysqlOffset != null and mysqlLength != null" >
+      <![CDATA[ limit #{mysqlOffset} , #{mysqlLength} ]]>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from ys_user_address
+    where id = #{id}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from ys_user_address
+    where id = #{id}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.yashebook.domain.po.UserAddressCriteria" >
+    delete from ys_user_address
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.yashebook.domain.po.UserAddress" >
+    insert into ys_user_address (id, address, area_id, area_id_path, consignee_name, consignee_phone, 
+      create_time, delete_flag, is_default, user_id)
+    values (#{id}, #{address}, #{areaId}, #{areaIdPath}, #{consigneeName}, #{consigneePhone}, 
+      #{createTime}, #{deleteFlag}, #{isDefault}, #{userId})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yashebook.domain.po.UserAddress" >
+    insert into ys_user_address
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="areaId != null" >
+        area_id,
+      </if>
+      <if test="areaIdPath != null" >
+        area_id_path,
+      </if>
+      <if test="consigneeName != null" >
+        consignee_name,
+      </if>
+      <if test="consigneePhone != null" >
+        consignee_phone,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="deleteFlag != null" >
+        delete_flag,
+      </if>
+      <if test="isDefault != null" >
+        is_default,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id},
+      </if>
+      <if test="address != null" >
+        #{address},
+      </if>
+      <if test="areaId != null" >
+        #{areaId},
+      </if>
+      <if test="areaIdPath != null" >
+        #{areaIdPath},
+      </if>
+      <if test="consigneeName != null" >
+        #{consigneeName},
+      </if>
+      <if test="consigneePhone != null" >
+        #{consigneePhone},
+      </if>
+      <if test="createTime != null" >
+        #{createTime},
+      </if>
+      <if test="deleteFlag != null" >
+        #{deleteFlag},
+      </if>
+      <if test="isDefault != null" >
+        #{isDefault},
+      </if>
+      <if test="userId != null" >
+        #{userId},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.yashebook.domain.po.UserAddressCriteria" resultType="java.lang.Integer" >
+    select count(*) from ys_user_address
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update ys_user_address
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id},
+      </if>
+      <if test="record.address != null" >
+        address = #{record.address},
+      </if>
+      <if test="record.areaId != null" >
+        area_id = #{record.areaId},
+      </if>
+      <if test="record.areaIdPath != null" >
+        area_id_path = #{record.areaIdPath},
+      </if>
+      <if test="record.consigneeName != null" >
+        consignee_name = #{record.consigneeName},
+      </if>
+      <if test="record.consigneePhone != null" >
+        consignee_phone = #{record.consigneePhone},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime},
+      </if>
+      <if test="record.deleteFlag != null" >
+        delete_flag = #{record.deleteFlag},
+      </if>
+      <if test="record.isDefault != null" >
+        is_default = #{record.isDefault},
+      </if>
+      <if test="record.userId != null" >
+        user_id = #{record.userId},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update ys_user_address
+    set id = #{record.id},
+      address = #{record.address},
+      area_id = #{record.areaId},
+      area_id_path = #{record.areaIdPath},
+      consignee_name = #{record.consigneeName},
+      consignee_phone = #{record.consigneePhone},
+      create_time = #{record.createTime},
+      delete_flag = #{record.deleteFlag},
+      is_default = #{record.isDefault},
+      user_id = #{record.userId}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yashebook.domain.po.UserAddress" >
+    update ys_user_address
+    <set >
+      <if test="address != null" >
+        address = #{address},
+      </if>
+      <if test="areaId != null" >
+        area_id = #{areaId},
+      </if>
+      <if test="areaIdPath != null" >
+        area_id_path = #{areaIdPath},
+      </if>
+      <if test="consigneeName != null" >
+        consignee_name = #{consigneeName},
+      </if>
+      <if test="consigneePhone != null" >
+        consignee_phone = #{consigneePhone},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime},
+      </if>
+      <if test="deleteFlag != null" >
+        delete_flag = #{deleteFlag},
+      </if>
+      <if test="isDefault != null" >
+        is_default = #{isDefault},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId},
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yashebook.domain.po.UserAddress" >
+    update ys_user_address
+    set address = #{address},
+      area_id = #{areaId},
+      area_id_path = #{areaIdPath},
+      consignee_name = #{consigneeName},
+      consignee_phone = #{consigneePhone},
+      create_time = #{createTime},
+      delete_flag = #{deleteFlag},
+      is_default = #{isDefault},
+      user_id = #{userId}
+    where id = #{id}
+  </update>
+</mapper>

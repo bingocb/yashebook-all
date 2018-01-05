@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yashebook.domain.mapper.UserCartsMapper" >
+  <resultMap id="BaseResultMap" type="com.yashebook.domain.po.UserCarts" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="num" property="num" jdbcType="VARCHAR" />
+    <result column="product_sn" property="productSn" jdbcType="VARCHAR" />
+    <result column="user_id" property="userId" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, num, product_sn, user_id
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.yashebook.domain.po.UserCartsCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from ys_user_carts
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="mysqlOffset != null and mysqlLength != null" >
+      <![CDATA[ limit #{mysqlOffset} , #{mysqlLength} ]]>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from ys_user_carts
+    where id = #{id}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from ys_user_carts
+    where id = #{id}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.yashebook.domain.po.UserCartsCriteria" >
+    delete from ys_user_carts
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.yashebook.domain.po.UserCarts" >
+    insert into ys_user_carts (id, num, product_sn, user_id)
+    values (#{id}, #{num}, #{productSn}, #{userId})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yashebook.domain.po.UserCarts" >
+    insert into ys_user_carts
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="num != null" >
+        num,
+      </if>
+      <if test="productSn != null" >
+        product_sn,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id},
+      </if>
+      <if test="num != null" >
+        #{num},
+      </if>
+      <if test="productSn != null" >
+        #{productSn},
+      </if>
+      <if test="userId != null" >
+        #{userId},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.yashebook.domain.po.UserCartsCriteria" resultType="java.lang.Integer" >
+    select count(*) from ys_user_carts
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update ys_user_carts
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id},
+      </if>
+      <if test="record.num != null" >
+        num = #{record.num},
+      </if>
+      <if test="record.productSn != null" >
+        product_sn = #{record.productSn},
+      </if>
+      <if test="record.userId != null" >
+        user_id = #{record.userId},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update ys_user_carts
+    set id = #{record.id},
+      num = #{record.num},
+      product_sn = #{record.productSn},
+      user_id = #{record.userId}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yashebook.domain.po.UserCarts" >
+    update ys_user_carts
+    <set >
+      <if test="num != null" >
+        num = #{num},
+      </if>
+      <if test="productSn != null" >
+        product_sn = #{productSn},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId},
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yashebook.domain.po.UserCarts" >
+    update ys_user_carts
+    set num = #{num},
+      product_sn = #{productSn},
+      user_id = #{userId}
+    where id = #{id}
+  </update>
+</mapper>

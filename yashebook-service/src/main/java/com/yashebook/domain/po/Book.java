@@ -7,254 +7,584 @@ import org.apache.commons.lang.builder.ToStringStyle;
 
 /**
 * Book
-* table:ys_book
+* table:ys_books
 * 
-* @author liangc [cc14514@icloud.com]
+* @author chenbin
 * @version v1.0
 * @copy pet
-* @date 2018-01-04 17:12:40
+* @date 2018-01-05 10:40:00
 */
 public class Book implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    private String id;
+    /**
+     * 自增ID
+     */
+    private Integer id;
 
-    private String isbn;
+    /**
+     * 图书编号
+     */
+    private String booksSn;
 
-    private String author;
+    /**
+     * 商品号
+     */
+    private String productNo;
 
-    private String authorIntroduction;
+    /**
+     * 图书名
+     */
+    private String booksName;
 
-    private String bookFolio;
+    /**
+     * 图书封面地址
+     */
+    private String booksImgs;
 
-    private String bookFonts;
+    /**
+     * 市场价
+     */
+    private Integer marketPrice;
 
-    private String bookName;
+    /**
+     * 门店价
+     */
+    private Integer shopPrice;
 
-    private String bookPage;
+    /**
+     * 图书总库存
+     */
+    private Integer booksStock;
 
-    private String bookSn;
+    /**
+     * 预警库存
+     */
+    private Integer warnStock;
 
-    private String bookVersion;
+    /**
+     * 单位：本、套、箱
+     */
+    private String booksUtil;
 
-    private String catalog;
+    /**
+     * 是否上架：0不上架，1上架
+     */
+    private Byte isSale;
 
-    private String comment;
+    /**
+     * 是否精品：0否，1是
+     */
+    private Byte isBest;
 
-    private String content;
+    /**
+     * 是否热销：0否，1是
+     */
+    private Byte isHot;
 
-    private String contentIntroduction;
+    /**
+     * 是否新品：0否，1是
+     */
+    private Byte isNew;
 
-    private String covers;
+    /**
+     * 是否推荐：0否，1是
+     */
+    private Byte isRecommend;
 
+    /**
+     * 图书三级分类编号路径
+     */
+    private String booksCatsnPath;
+
+    /**
+     * 图书末端分类编号
+     */
+    private String booksCatsn;
+
+    /**
+     * 出版社编号
+     */
+    private String pressSn;
+
+    /**
+     * 状态：-1违规，0未审核，1已审核
+     */
+    private Byte status;
+
+    /**
+     * 销售量
+     */
+    private Integer saleNum;
+
+    /**
+     * 上架时间
+     */
+    private Date saleTime;
+
+    /**
+     * 访问量
+     */
+    private Integer visitNum;
+
+    /**
+     * 评价数量
+     */
+    private Integer appraiseNum;
+
+    /**
+     * 图书搜索关键字，搜索系统使用
+     */
+    private String booksSearchKeywords;
+
+    /**
+     * 状态说明，一般用于审核流程中各阶段说明
+     */
+    private String illegalRemarks;
+
+    /**
+     * 是否删除标识：-1删除，1有效
+     */
+    private Byte deleteFlag;
+
+    /**
+     * 创建时间
+     */
     private Date createTime;
 
-    private String editorRecommend;
-
-    private Integer isFull;
-
-    private String material;
-
+    /**
+     * 最近修改时间
+     */
     private Date modifyTime;
 
-    private String packType;
+    private Integer deteleFlag;
 
-    private String pressName;
-
-    private Date printTime;
-
-    private String publishingTime;
-
-    public String getId() {
+    /**
+     * @return 自增ID
+     */
+    public Integer getId() {
         return id;
     }
 
-    public void setId(String id) {
+    /**
+     * @param id 
+	 *            自增ID
+     */
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public String getIsbn() {
-        return isbn;
+    /**
+     * @return 图书编号
+     */
+    public String getBooksSn() {
+        return booksSn;
     }
 
-    public void setIsbn(String isbn) {
-        this.isbn = isbn;
+    /**
+     * @param booksSn 
+	 *            图书编号
+     */
+    public void setBooksSn(String booksSn) {
+        this.booksSn = booksSn;
     }
 
-    public String getAuthor() {
-        return author;
+    /**
+     * @return 商品号
+     */
+    public String getProductNo() {
+        return productNo;
     }
 
-    public void setAuthor(String author) {
-        this.author = author;
+    /**
+     * @param productNo 
+	 *            商品号
+     */
+    public void setProductNo(String productNo) {
+        this.productNo = productNo;
     }
 
-    public String getAuthorIntroduction() {
-        return authorIntroduction;
+    /**
+     * @return 图书名
+     */
+    public String getBooksName() {
+        return booksName;
     }
 
-    public void setAuthorIntroduction(String authorIntroduction) {
-        this.authorIntroduction = authorIntroduction;
+    /**
+     * @param booksName 
+	 *            图书名
+     */
+    public void setBooksName(String booksName) {
+        this.booksName = booksName;
     }
 
-    public String getBookFolio() {
-        return bookFolio;
+    /**
+     * @return 图书封面地址
+     */
+    public String getBooksImgs() {
+        return booksImgs;
     }
 
-    public void setBookFolio(String bookFolio) {
-        this.bookFolio = bookFolio;
+    /**
+     * @param booksImgs 
+	 *            图书封面地址
+     */
+    public void setBooksImgs(String booksImgs) {
+        this.booksImgs = booksImgs;
     }
 
-    public String getBookFonts() {
-        return bookFonts;
+    /**
+     * @return 市场价
+     */
+    public Integer getMarketPrice() {
+        return marketPrice;
     }
 
-    public void setBookFonts(String bookFonts) {
-        this.bookFonts = bookFonts;
+    /**
+     * @param marketPrice 
+	 *            市场价
+     */
+    public void setMarketPrice(Integer marketPrice) {
+        this.marketPrice = marketPrice;
     }
 
-    public String getBookName() {
-        return bookName;
+    /**
+     * @return 门店价
+     */
+    public Integer getShopPrice() {
+        return shopPrice;
     }
 
-    public void setBookName(String bookName) {
-        this.bookName = bookName;
+    /**
+     * @param shopPrice 
+	 *            门店价
+     */
+    public void setShopPrice(Integer shopPrice) {
+        this.shopPrice = shopPrice;
     }
 
-    public String getBookPage() {
-        return bookPage;
+    /**
+     * @return 图书总库存
+     */
+    public Integer getBooksStock() {
+        return booksStock;
     }
 
-    public void setBookPage(String bookPage) {
-        this.bookPage = bookPage;
+    /**
+     * @param booksStock 
+	 *            图书总库存
+     */
+    public void setBooksStock(Integer booksStock) {
+        this.booksStock = booksStock;
     }
 
-    public String getBookSn() {
-        return bookSn;
+    /**
+     * @return 预警库存
+     */
+    public Integer getWarnStock() {
+        return warnStock;
     }
 
-    public void setBookSn(String bookSn) {
-        this.bookSn = bookSn;
+    /**
+     * @param warnStock 
+	 *            预警库存
+     */
+    public void setWarnStock(Integer warnStock) {
+        this.warnStock = warnStock;
     }
 
-    public String getBookVersion() {
-        return bookVersion;
+    /**
+     * @return 单位：本、套、箱
+     */
+    public String getBooksUtil() {
+        return booksUtil;
     }
 
-    public void setBookVersion(String bookVersion) {
-        this.bookVersion = bookVersion;
+    /**
+     * @param booksUtil 
+	 *            单位：本、套、箱
+     */
+    public void setBooksUtil(String booksUtil) {
+        this.booksUtil = booksUtil;
     }
 
-    public String getCatalog() {
-        return catalog;
+    /**
+     * @return 是否上架：0不上架，1上架
+     */
+    public Byte getIsSale() {
+        return isSale;
     }
 
-    public void setCatalog(String catalog) {
-        this.catalog = catalog;
+    /**
+     * @param isSale 
+	 *            是否上架：0不上架，1上架
+     */
+    public void setIsSale(Byte isSale) {
+        this.isSale = isSale;
     }
 
-    public String getComment() {
-        return comment;
+    /**
+     * @return 是否精品：0否，1是
+     */
+    public Byte getIsBest() {
+        return isBest;
     }
 
-    public void setComment(String comment) {
-        this.comment = comment;
+    /**
+     * @param isBest 
+	 *            是否精品：0否，1是
+     */
+    public void setIsBest(Byte isBest) {
+        this.isBest = isBest;
     }
 
-    public String getContent() {
-        return content;
+    /**
+     * @return 是否热销：0否，1是
+     */
+    public Byte getIsHot() {
+        return isHot;
     }
 
-    public void setContent(String content) {
-        this.content = content;
+    /**
+     * @param isHot 
+	 *            是否热销：0否，1是
+     */
+    public void setIsHot(Byte isHot) {
+        this.isHot = isHot;
     }
 
-    public String getContentIntroduction() {
-        return contentIntroduction;
+    /**
+     * @return 是否新品：0否，1是
+     */
+    public Byte getIsNew() {
+        return isNew;
     }
 
-    public void setContentIntroduction(String contentIntroduction) {
-        this.contentIntroduction = contentIntroduction;
+    /**
+     * @param isNew 
+	 *            是否新品：0否，1是
+     */
+    public void setIsNew(Byte isNew) {
+        this.isNew = isNew;
     }
 
-    public String getCovers() {
-        return covers;
+    /**
+     * @return 是否推荐：0否，1是
+     */
+    public Byte getIsRecommend() {
+        return isRecommend;
     }
 
-    public void setCovers(String covers) {
-        this.covers = covers;
+    /**
+     * @param isRecommend 
+	 *            是否推荐：0否，1是
+     */
+    public void setIsRecommend(Byte isRecommend) {
+        this.isRecommend = isRecommend;
     }
 
+    /**
+     * @return 图书三级分类编号路径
+     */
+    public String getBooksCatsnPath() {
+        return booksCatsnPath;
+    }
+
+    /**
+     * @param booksCatsnPath 
+	 *            图书三级分类编号路径
+     */
+    public void setBooksCatsnPath(String booksCatsnPath) {
+        this.booksCatsnPath = booksCatsnPath;
+    }
+
+    /**
+     * @return 图书末端分类编号
+     */
+    public String getBooksCatsn() {
+        return booksCatsn;
+    }
+
+    /**
+     * @param booksCatsn 
+	 *            图书末端分类编号
+     */
+    public void setBooksCatsn(String booksCatsn) {
+        this.booksCatsn = booksCatsn;
+    }
+
+    /**
+     * @return 出版社编号
+     */
+    public String getPressSn() {
+        return pressSn;
+    }
+
+    /**
+     * @param pressSn 
+	 *            出版社编号
+     */
+    public void setPressSn(String pressSn) {
+        this.pressSn = pressSn;
+    }
+
+    /**
+     * @return 状态：-1违规，0未审核，1已审核
+     */
+    public Byte getStatus() {
+        return status;
+    }
+
+    /**
+     * @param status 
+	 *            状态：-1违规，0未审核，1已审核
+     */
+    public void setStatus(Byte status) {
+        this.status = status;
+    }
+
+    /**
+     * @return 销售量
+     */
+    public Integer getSaleNum() {
+        return saleNum;
+    }
+
+    /**
+     * @param saleNum 
+	 *            销售量
+     */
+    public void setSaleNum(Integer saleNum) {
+        this.saleNum = saleNum;
+    }
+
+    /**
+     * @return 上架时间
+     */
+    public Date getSaleTime() {
+        return saleTime;
+    }
+
+    /**
+     * @param saleTime 
+	 *            上架时间
+     */
+    public void setSaleTime(Date saleTime) {
+        this.saleTime = saleTime;
+    }
+
+    /**
+     * @return 访问量
+     */
+    public Integer getVisitNum() {
+        return visitNum;
+    }
+
+    /**
+     * @param visitNum 
+	 *            访问量
+     */
+    public void setVisitNum(Integer visitNum) {
+        this.visitNum = visitNum;
+    }
+
+    /**
+     * @return 评价数量
+     */
+    public Integer getAppraiseNum() {
+        return appraiseNum;
+    }
+
+    /**
+     * @param appraiseNum 
+	 *            评价数量
+     */
+    public void setAppraiseNum(Integer appraiseNum) {
+        this.appraiseNum = appraiseNum;
+    }
+
+    /**
+     * @return 图书搜索关键字，搜索系统使用
+     */
+    public String getBooksSearchKeywords() {
+        return booksSearchKeywords;
+    }
+
+    /**
+     * @param booksSearchKeywords 
+	 *            图书搜索关键字，搜索系统使用
+     */
+    public void setBooksSearchKeywords(String booksSearchKeywords) {
+        this.booksSearchKeywords = booksSearchKeywords;
+    }
+
+    /**
+     * @return 状态说明，一般用于审核流程中各阶段说明
+     */
+    public String getIllegalRemarks() {
+        return illegalRemarks;
+    }
+
+    /**
+     * @param illegalRemarks 
+	 *            状态说明，一般用于审核流程中各阶段说明
+     */
+    public void setIllegalRemarks(String illegalRemarks) {
+        this.illegalRemarks = illegalRemarks;
+    }
+
+    /**
+     * @return 是否删除标识：-1删除，1有效
+     */
+    public Byte getDeleteFlag() {
+        return deleteFlag;
+    }
+
+    /**
+     * @param deleteFlag 
+	 *            是否删除标识：-1删除，1有效
+     */
+    public void setDeleteFlag(Byte deleteFlag) {
+        this.deleteFlag = deleteFlag;
+    }
+
+    /**
+     * @return 创建时间
+     */
     public Date getCreateTime() {
         return createTime;
     }
 
+    /**
+     * @param createTime 
+	 *            创建时间
+     */
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
     }
 
-    public String getEditorRecommend() {
-        return editorRecommend;
-    }
-
-    public void setEditorRecommend(String editorRecommend) {
-        this.editorRecommend = editorRecommend;
-    }
-
-    public Integer getIsFull() {
-        return isFull;
-    }
-
-    public void setIsFull(Integer isFull) {
-        this.isFull = isFull;
-    }
-
-    public String getMaterial() {
-        return material;
-    }
-
-    public void setMaterial(String material) {
-        this.material = material;
-    }
-
+    /**
+     * @return 最近修改时间
+     */
     public Date getModifyTime() {
         return modifyTime;
     }
 
+    /**
+     * @param modifyTime 
+	 *            最近修改时间
+     */
     public void setModifyTime(Date modifyTime) {
         this.modifyTime = modifyTime;
     }
 
-    public String getPackType() {
-        return packType;
+    public Integer getDeteleFlag() {
+        return deteleFlag;
     }
 
-    public void setPackType(String packType) {
-        this.packType = packType;
-    }
-
-    public String getPressName() {
-        return pressName;
-    }
-
-    public void setPressName(String pressName) {
-        this.pressName = pressName;
-    }
-
-    public Date getPrintTime() {
-        return printTime;
-    }
-
-    public void setPrintTime(Date printTime) {
-        this.printTime = printTime;
-    }
-
-    public String getPublishingTime() {
-        return publishingTime;
-    }
-
-    public void setPublishingTime(String publishingTime) {
-        this.publishingTime = publishingTime;
+    public void setDeteleFlag(Integer deteleFlag) {
+        this.deteleFlag = deteleFlag;
     }
 
     @Override
@@ -270,29 +600,34 @@ public class Book implements Serializable {
         }
         Book other = (Book) that;
         return (this.getId() == null ? other.getId() == null : this.getId().equals(other.getId()))
-            && (this.getIsbn() == null ? other.getIsbn() == null : this.getIsbn().equals(other.getIsbn()))
-            && (this.getAuthor() == null ? other.getAuthor() == null : this.getAuthor().equals(other.getAuthor()))
-            && (this.getAuthorIntroduction() == null ? other.getAuthorIntroduction() == null : this.getAuthorIntroduction().equals(other.getAuthorIntroduction()))
-            && (this.getBookFolio() == null ? other.getBookFolio() == null : this.getBookFolio().equals(other.getBookFolio()))
-            && (this.getBookFonts() == null ? other.getBookFonts() == null : this.getBookFonts().equals(other.getBookFonts()))
-            && (this.getBookName() == null ? other.getBookName() == null : this.getBookName().equals(other.getBookName()))
-            && (this.getBookPage() == null ? other.getBookPage() == null : this.getBookPage().equals(other.getBookPage()))
-            && (this.getBookSn() == null ? other.getBookSn() == null : this.getBookSn().equals(other.getBookSn()))
-            && (this.getBookVersion() == null ? other.getBookVersion() == null : this.getBookVersion().equals(other.getBookVersion()))
-            && (this.getCatalog() == null ? other.getCatalog() == null : this.getCatalog().equals(other.getCatalog()))
-            && (this.getComment() == null ? other.getComment() == null : this.getComment().equals(other.getComment()))
-            && (this.getContent() == null ? other.getContent() == null : this.getContent().equals(other.getContent()))
-            && (this.getContentIntroduction() == null ? other.getContentIntroduction() == null : this.getContentIntroduction().equals(other.getContentIntroduction()))
-            && (this.getCovers() == null ? other.getCovers() == null : this.getCovers().equals(other.getCovers()))
+            && (this.getBooksSn() == null ? other.getBooksSn() == null : this.getBooksSn().equals(other.getBooksSn()))
+            && (this.getProductNo() == null ? other.getProductNo() == null : this.getProductNo().equals(other.getProductNo()))
+            && (this.getBooksName() == null ? other.getBooksName() == null : this.getBooksName().equals(other.getBooksName()))
+            && (this.getBooksImgs() == null ? other.getBooksImgs() == null : this.getBooksImgs().equals(other.getBooksImgs()))
+            && (this.getMarketPrice() == null ? other.getMarketPrice() == null : this.getMarketPrice().equals(other.getMarketPrice()))
+            && (this.getShopPrice() == null ? other.getShopPrice() == null : this.getShopPrice().equals(other.getShopPrice()))
+            && (this.getBooksStock() == null ? other.getBooksStock() == null : this.getBooksStock().equals(other.getBooksStock()))
+            && (this.getWarnStock() == null ? other.getWarnStock() == null : this.getWarnStock().equals(other.getWarnStock()))
+            && (this.getBooksUtil() == null ? other.getBooksUtil() == null : this.getBooksUtil().equals(other.getBooksUtil()))
+            && (this.getIsSale() == null ? other.getIsSale() == null : this.getIsSale().equals(other.getIsSale()))
+            && (this.getIsBest() == null ? other.getIsBest() == null : this.getIsBest().equals(other.getIsBest()))
+            && (this.getIsHot() == null ? other.getIsHot() == null : this.getIsHot().equals(other.getIsHot()))
+            && (this.getIsNew() == null ? other.getIsNew() == null : this.getIsNew().equals(other.getIsNew()))
+            && (this.getIsRecommend() == null ? other.getIsRecommend() == null : this.getIsRecommend().equals(other.getIsRecommend()))
+            && (this.getBooksCatsnPath() == null ? other.getBooksCatsnPath() == null : this.getBooksCatsnPath().equals(other.getBooksCatsnPath()))
+            && (this.getBooksCatsn() == null ? other.getBooksCatsn() == null : this.getBooksCatsn().equals(other.getBooksCatsn()))
+            && (this.getPressSn() == null ? other.getPressSn() == null : this.getPressSn().equals(other.getPressSn()))
+            && (this.getStatus() == null ? other.getStatus() == null : this.getStatus().equals(other.getStatus()))
+            && (this.getSaleNum() == null ? other.getSaleNum() == null : this.getSaleNum().equals(other.getSaleNum()))
+            && (this.getSaleTime() == null ? other.getSaleTime() == null : this.getSaleTime().equals(other.getSaleTime()))
+            && (this.getVisitNum() == null ? other.getVisitNum() == null : this.getVisitNum().equals(other.getVisitNum()))
+            && (this.getAppraiseNum() == null ? other.getAppraiseNum() == null : this.getAppraiseNum().equals(other.getAppraiseNum()))
+            && (this.getBooksSearchKeywords() == null ? other.getBooksSearchKeywords() == null : this.getBooksSearchKeywords().equals(other.getBooksSearchKeywords()))
+            && (this.getIllegalRemarks() == null ? other.getIllegalRemarks() == null : this.getIllegalRemarks().equals(other.getIllegalRemarks()))
+            && (this.getDeleteFlag() == null ? other.getDeleteFlag() == null : this.getDeleteFlag().equals(other.getDeleteFlag()))
             && (this.getCreateTime() == null ? other.getCreateTime() == null : this.getCreateTime().equals(other.getCreateTime()))
-            && (this.getEditorRecommend() == null ? other.getEditorRecommend() == null : this.getEditorRecommend().equals(other.getEditorRecommend()))
-            && (this.getIsFull() == null ? other.getIsFull() == null : this.getIsFull().equals(other.getIsFull()))
-            && (this.getMaterial() == null ? other.getMaterial() == null : this.getMaterial().equals(other.getMaterial()))
             && (this.getModifyTime() == null ? other.getModifyTime() == null : this.getModifyTime().equals(other.getModifyTime()))
-            && (this.getPackType() == null ? other.getPackType() == null : this.getPackType().equals(other.getPackType()))
-            && (this.getPressName() == null ? other.getPressName() == null : this.getPressName().equals(other.getPressName()))
-            && (this.getPrintTime() == null ? other.getPrintTime() == null : this.getPrintTime().equals(other.getPrintTime()))
-            && (this.getPublishingTime() == null ? other.getPublishingTime() == null : this.getPublishingTime().equals(other.getPublishingTime()));
+            && (this.getDeteleFlag() == null ? other.getDeteleFlag() == null : this.getDeteleFlag().equals(other.getDeteleFlag()));
     }
 
     @Override
@@ -300,29 +635,34 @@ public class Book implements Serializable {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((getId() == null) ? 0 : getId().hashCode());
-        result = prime * result + ((getIsbn() == null) ? 0 : getIsbn().hashCode());
-        result = prime * result + ((getAuthor() == null) ? 0 : getAuthor().hashCode());
-        result = prime * result + ((getAuthorIntroduction() == null) ? 0 : getAuthorIntroduction().hashCode());
-        result = prime * result + ((getBookFolio() == null) ? 0 : getBookFolio().hashCode());
-        result = prime * result + ((getBookFonts() == null) ? 0 : getBookFonts().hashCode());
-        result = prime * result + ((getBookName() == null) ? 0 : getBookName().hashCode());
-        result = prime * result + ((getBookPage() == null) ? 0 : getBookPage().hashCode());
-        result = prime * result + ((getBookSn() == null) ? 0 : getBookSn().hashCode());
-        result = prime * result + ((getBookVersion() == null) ? 0 : getBookVersion().hashCode());
-        result = prime * result + ((getCatalog() == null) ? 0 : getCatalog().hashCode());
-        result = prime * result + ((getComment() == null) ? 0 : getComment().hashCode());
-        result = prime * result + ((getContent() == null) ? 0 : getContent().hashCode());
-        result = prime * result + ((getContentIntroduction() == null) ? 0 : getContentIntroduction().hashCode());
-        result = prime * result + ((getCovers() == null) ? 0 : getCovers().hashCode());
+        result = prime * result + ((getBooksSn() == null) ? 0 : getBooksSn().hashCode());
+        result = prime * result + ((getProductNo() == null) ? 0 : getProductNo().hashCode());
+        result = prime * result + ((getBooksName() == null) ? 0 : getBooksName().hashCode());
+        result = prime * result + ((getBooksImgs() == null) ? 0 : getBooksImgs().hashCode());
+        result = prime * result + ((getMarketPrice() == null) ? 0 : getMarketPrice().hashCode());
+        result = prime * result + ((getShopPrice() == null) ? 0 : getShopPrice().hashCode());
+        result = prime * result + ((getBooksStock() == null) ? 0 : getBooksStock().hashCode());
+        result = prime * result + ((getWarnStock() == null) ? 0 : getWarnStock().hashCode());
+        result = prime * result + ((getBooksUtil() == null) ? 0 : getBooksUtil().hashCode());
+        result = prime * result + ((getIsSale() == null) ? 0 : getIsSale().hashCode());
+        result = prime * result + ((getIsBest() == null) ? 0 : getIsBest().hashCode());
+        result = prime * result + ((getIsHot() == null) ? 0 : getIsHot().hashCode());
+        result = prime * result + ((getIsNew() == null) ? 0 : getIsNew().hashCode());
+        result = prime * result + ((getIsRecommend() == null) ? 0 : getIsRecommend().hashCode());
+        result = prime * result + ((getBooksCatsnPath() == null) ? 0 : getBooksCatsnPath().hashCode());
+        result = prime * result + ((getBooksCatsn() == null) ? 0 : getBooksCatsn().hashCode());
+        result = prime * result + ((getPressSn() == null) ? 0 : getPressSn().hashCode());
+        result = prime * result + ((getStatus() == null) ? 0 : getStatus().hashCode());
+        result = prime * result + ((getSaleNum() == null) ? 0 : getSaleNum().hashCode());
+        result = prime * result + ((getSaleTime() == null) ? 0 : getSaleTime().hashCode());
+        result = prime * result + ((getVisitNum() == null) ? 0 : getVisitNum().hashCode());
+        result = prime * result + ((getAppraiseNum() == null) ? 0 : getAppraiseNum().hashCode());
+        result = prime * result + ((getBooksSearchKeywords() == null) ? 0 : getBooksSearchKeywords().hashCode());
+        result = prime * result + ((getIllegalRemarks() == null) ? 0 : getIllegalRemarks().hashCode());
+        result = prime * result + ((getDeleteFlag() == null) ? 0 : getDeleteFlag().hashCode());
         result = prime * result + ((getCreateTime() == null) ? 0 : getCreateTime().hashCode());
-        result = prime * result + ((getEditorRecommend() == null) ? 0 : getEditorRecommend().hashCode());
-        result = prime * result + ((getIsFull() == null) ? 0 : getIsFull().hashCode());
-        result = prime * result + ((getMaterial() == null) ? 0 : getMaterial().hashCode());
         result = prime * result + ((getModifyTime() == null) ? 0 : getModifyTime().hashCode());
-        result = prime * result + ((getPackType() == null) ? 0 : getPackType().hashCode());
-        result = prime * result + ((getPressName() == null) ? 0 : getPressName().hashCode());
-        result = prime * result + ((getPrintTime() == null) ? 0 : getPrintTime().hashCode());
-        result = prime * result + ((getPublishingTime() == null) ? 0 : getPublishingTime().hashCode());
+        result = prime * result + ((getDeteleFlag() == null) ? 0 : getDeteleFlag().hashCode());
         return result;
     }
 

@@ -39,6 +39,7 @@ public class Server extends Thread{
 
     class RPCServiceImpl implements RPCService.Iface {
 
+
         @Override
         public String call(String licence, String sn, String content) throws TException {
             try {

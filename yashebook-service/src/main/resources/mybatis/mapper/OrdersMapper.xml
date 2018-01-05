@@ -1,0 +1,521 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yashebook.domain.mapper.OrdersMapper" >
+  <resultMap id="BaseResultMap" type="com.yashebook.domain.po.Orders" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="cancel_reason" property="cancelReason" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="delete_flag" property="deleteFlag" jdbcType="INTEGER" />
+    <result column="deliver_money" property="deliverMoney" jdbcType="DOUBLE" />
+    <result column="deliver_type" property="deliverType" jdbcType="INTEGER" />
+    <result column="express_sn" property="expressSn" jdbcType="VARCHAR" />
+    <result column="is_appraise" property="isAppraise" jdbcType="INTEGER" />
+    <result column="is_pay" property="isPay" jdbcType="INTEGER" />
+    <result column="is_refund" property="isRefund" jdbcType="INTEGER" />
+    <result column="modify_time" property="modifyTime" jdbcType="TIMESTAMP" />
+    <result column="money" property="money" jdbcType="DOUBLE" />
+    <result column="order_sn" property="orderSn" jdbcType="VARCHAR" />
+    <result column="order_source" property="orderSource" jdbcType="INTEGER" />
+    <result column="other_reason" property="otherReason" jdbcType="VARCHAR" />
+    <result column="pay_source" property="paySource" jdbcType="INTEGER" />
+    <result column="pay_type" property="payType" jdbcType="INTEGER" />
+    <result column="real_total_money" property="realTotalMoney" jdbcType="DOUBLE" />
+    <result column="reject_reason" property="rejectReason" jdbcType="INTEGER" />
+    <result column="remarks" property="remarks" jdbcType="VARCHAR" />
+    <result column="score" property="score" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="total_money" property="totalMoney" jdbcType="DOUBLE" />
+    <result column="trade_no" property="tradeNo" jdbcType="VARCHAR" />
+    <result column="user_id" property="userId" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, cancel_reason, create_time, delete_flag, deliver_money, deliver_type, express_sn, 
+    is_appraise, is_pay, is_refund, modify_time, money, order_sn, order_source, other_reason, 
+    pay_source, pay_type, real_total_money, reject_reason, remarks, score, status, total_money, 
+    trade_no, user_id
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.yashebook.domain.po.OrdersCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from ys_orders
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="mysqlOffset != null and mysqlLength != null" >
+      <![CDATA[ limit #{mysqlOffset} , #{mysqlLength} ]]>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from ys_orders
+    where id = #{id}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from ys_orders
+    where id = #{id}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.yashebook.domain.po.OrdersCriteria" >
+    delete from ys_orders
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.yashebook.domain.po.Orders" >
+    insert into ys_orders (id, cancel_reason, create_time, delete_flag, deliver_money, deliver_type, 
+      express_sn, is_appraise, is_pay, is_refund, modify_time, money, order_sn, 
+      order_source, other_reason, pay_source, pay_type, real_total_money, reject_reason, 
+      remarks, score, status, total_money, trade_no, user_id)
+    values (#{id}, #{cancelReason}, #{createTime}, #{deleteFlag}, #{deliverMoney}, #{deliverType}, 
+      #{expressSn}, #{isAppraise}, #{isPay}, #{isRefund}, #{modifyTime}, #{money}, #{orderSn}, 
+      #{orderSource}, #{otherReason}, #{paySource}, #{payType}, #{realTotalMoney}, #{rejectReason}, 
+      #{remarks}, #{score}, #{status}, #{totalMoney}, #{tradeNo}, #{userId})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yashebook.domain.po.Orders" >
+    insert into ys_orders
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="cancelReason != null" >
+        cancel_reason,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="deleteFlag != null" >
+        delete_flag,
+      </if>
+      <if test="deliverMoney != null" >
+        deliver_money,
+      </if>
+      <if test="deliverType != null" >
+        deliver_type,
+      </if>
+      <if test="expressSn != null" >
+        express_sn,
+      </if>
+      <if test="isAppraise != null" >
+        is_appraise,
+      </if>
+      <if test="isPay != null" >
+        is_pay,
+      </if>
+      <if test="isRefund != null" >
+        is_refund,
+      </if>
+      <if test="modifyTime != null" >
+        modify_time,
+      </if>
+      <if test="money != null" >
+        money,
+      </if>
+      <if test="orderSn != null" >
+        order_sn,
+      </if>
+      <if test="orderSource != null" >
+        order_source,
+      </if>
+      <if test="otherReason != null" >
+        other_reason,
+      </if>
+      <if test="paySource != null" >
+        pay_source,
+      </if>
+      <if test="payType != null" >
+        pay_type,
+      </if>
+      <if test="realTotalMoney != null" >
+        real_total_money,
+      </if>
+      <if test="rejectReason != null" >
+        reject_reason,
+      </if>
+      <if test="remarks != null" >
+        remarks,
+      </if>
+      <if test="score != null" >
+        score,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="totalMoney != null" >
+        total_money,
+      </if>
+      <if test="tradeNo != null" >
+        trade_no,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id},
+      </if>
+      <if test="cancelReason != null" >
+        #{cancelReason},
+      </if>
+      <if test="createTime != null" >
+        #{createTime},
+      </if>
+      <if test="deleteFlag != null" >
+        #{deleteFlag},
+      </if>
+      <if test="deliverMoney != null" >
+        #{deliverMoney},
+      </if>
+      <if test="deliverType != null" >
+        #{deliverType},
+      </if>
+      <if test="expressSn != null" >
+        #{expressSn},
+      </if>
+      <if test="isAppraise != null" >
+        #{isAppraise},
+      </if>
+      <if test="isPay != null" >
+        #{isPay},
+      </if>
+      <if test="isRefund != null" >
+        #{isRefund},
+      </if>
+      <if test="modifyTime != null" >
+        #{modifyTime},
+      </if>
+      <if test="money != null" >
+        #{money},
+      </if>
+      <if test="orderSn != null" >
+        #{orderSn},
+      </if>
+      <if test="orderSource != null" >
+        #{orderSource},
+      </if>
+      <if test="otherReason != null" >
+        #{otherReason},
+      </if>
+      <if test="paySource != null" >
+        #{paySource},
+      </if>
+      <if test="payType != null" >
+        #{payType},
+      </if>
+      <if test="realTotalMoney != null" >
+        #{realTotalMoney},
+      </if>
+      <if test="rejectReason != null" >
+        #{rejectReason},
+      </if>
+      <if test="remarks != null" >
+        #{remarks},
+      </if>
+      <if test="score != null" >
+        #{score},
+      </if>
+      <if test="status != null" >
+        #{status},
+      </if>
+      <if test="totalMoney != null" >
+        #{totalMoney},
+      </if>
+      <if test="tradeNo != null" >
+        #{tradeNo},
+      </if>
+      <if test="userId != null" >
+        #{userId},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.yashebook.domain.po.OrdersCriteria" resultType="java.lang.Integer" >
+    select count(*) from ys_orders
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update ys_orders
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id},
+      </if>
+      <if test="record.cancelReason != null" >
+        cancel_reason = #{record.cancelReason},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime},
+      </if>
+      <if test="record.deleteFlag != null" >
+        delete_flag = #{record.deleteFlag},
+      </if>
+      <if test="record.deliverMoney != null" >
+        deliver_money = #{record.deliverMoney},
+      </if>
+      <if test="record.deliverType != null" >
+        deliver_type = #{record.deliverType},
+      </if>
+      <if test="record.expressSn != null" >
+        express_sn = #{record.expressSn},
+      </if>
+      <if test="record.isAppraise != null" >
+        is_appraise = #{record.isAppraise},
+      </if>
+      <if test="record.isPay != null" >
+        is_pay = #{record.isPay},
+      </if>
+      <if test="record.isRefund != null" >
+        is_refund = #{record.isRefund},
+      </if>
+      <if test="record.modifyTime != null" >
+        modify_time = #{record.modifyTime},
+      </if>
+      <if test="record.money != null" >
+        money = #{record.money},
+      </if>
+      <if test="record.orderSn != null" >
+        order_sn = #{record.orderSn},
+      </if>
+      <if test="record.orderSource != null" >
+        order_source = #{record.orderSource},
+      </if>
+      <if test="record.otherReason != null" >
+        other_reason = #{record.otherReason},
+      </if>
+      <if test="record.paySource != null" >
+        pay_source = #{record.paySource},
+      </if>
+      <if test="record.payType != null" >
+        pay_type = #{record.payType},
+      </if>
+      <if test="record.realTotalMoney != null" >
+        real_total_money = #{record.realTotalMoney},
+      </if>
+      <if test="record.rejectReason != null" >
+        reject_reason = #{record.rejectReason},
+      </if>
+      <if test="record.remarks != null" >
+        remarks = #{record.remarks},
+      </if>
+      <if test="record.score != null" >
+        score = #{record.score},
+      </if>
+      <if test="record.status != null" >
+        status = #{record.status},
+      </if>
+      <if test="record.totalMoney != null" >
+        total_money = #{record.totalMoney},
+      </if>
+      <if test="record.tradeNo != null" >
+        trade_no = #{record.tradeNo},
+      </if>
+      <if test="record.userId != null" >
+        user_id = #{record.userId},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update ys_orders
+    set id = #{record.id},
+      cancel_reason = #{record.cancelReason},
+      create_time = #{record.createTime},
+      delete_flag = #{record.deleteFlag},
+      deliver_money = #{record.deliverMoney},
+      deliver_type = #{record.deliverType},
+      express_sn = #{record.expressSn},
+      is_appraise = #{record.isAppraise},
+      is_pay = #{record.isPay},
+      is_refund = #{record.isRefund},
+      modify_time = #{record.modifyTime},
+      money = #{record.money},
+      order_sn = #{record.orderSn},
+      order_source = #{record.orderSource},
+      other_reason = #{record.otherReason},
+      pay_source = #{record.paySource},
+      pay_type = #{record.payType},
+      real_total_money = #{record.realTotalMoney},
+      reject_reason = #{record.rejectReason},
+      remarks = #{record.remarks},
+      score = #{record.score},
+      status = #{record.status},
+      total_money = #{record.totalMoney},
+      trade_no = #{record.tradeNo},
+      user_id = #{record.userId}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yashebook.domain.po.Orders" >
+    update ys_orders
+    <set >
+      <if test="cancelReason != null" >
+        cancel_reason = #{cancelReason},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime},
+      </if>
+      <if test="deleteFlag != null" >
+        delete_flag = #{deleteFlag},
+      </if>
+      <if test="deliverMoney != null" >
+        deliver_money = #{deliverMoney},
+      </if>
+      <if test="deliverType != null" >
+        deliver_type = #{deliverType},
+      </if>
+      <if test="expressSn != null" >
+        express_sn = #{expressSn},
+      </if>
+      <if test="isAppraise != null" >
+        is_appraise = #{isAppraise},
+      </if>
+      <if test="isPay != null" >
+        is_pay = #{isPay},
+      </if>
+      <if test="isRefund != null" >
+        is_refund = #{isRefund},
+      </if>
+      <if test="modifyTime != null" >
+        modify_time = #{modifyTime},
+      </if>
+      <if test="money != null" >
+        money = #{money},
+      </if>
+      <if test="orderSn != null" >
+        order_sn = #{orderSn},
+      </if>
+      <if test="orderSource != null" >
+        order_source = #{orderSource},
+      </if>
+      <if test="otherReason != null" >
+        other_reason = #{otherReason},
+      </if>
+      <if test="paySource != null" >
+        pay_source = #{paySource},
+      </if>
+      <if test="payType != null" >
+        pay_type = #{payType},
+      </if>
+      <if test="realTotalMoney != null" >
+        real_total_money = #{realTotalMoney},
+      </if>
+      <if test="rejectReason != null" >
+        reject_reason = #{rejectReason},
+      </if>
+      <if test="remarks != null" >
+        remarks = #{remarks},
+      </if>
+      <if test="score != null" >
+        score = #{score},
+      </if>
+      <if test="status != null" >
+        status = #{status},
+      </if>
+      <if test="totalMoney != null" >
+        total_money = #{totalMoney},
+      </if>
+      <if test="tradeNo != null" >
+        trade_no = #{tradeNo},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId},
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yashebook.domain.po.Orders" >
+    update ys_orders
+    set cancel_reason = #{cancelReason},
+      create_time = #{createTime},
+      delete_flag = #{deleteFlag},
+      deliver_money = #{deliverMoney},
+      deliver_type = #{deliverType},
+      express_sn = #{expressSn},
+      is_appraise = #{isAppraise},
+      is_pay = #{isPay},
+      is_refund = #{isRefund},
+      modify_time = #{modifyTime},
+      money = #{money},
+      order_sn = #{orderSn},
+      order_source = #{orderSource},
+      other_reason = #{otherReason},
+      pay_source = #{paySource},
+      pay_type = #{payType},
+      real_total_money = #{realTotalMoney},
+      reject_reason = #{rejectReason},
+      remarks = #{remarks},
+      score = #{score},
+      status = #{status},
+      total_money = #{totalMoney},
+      trade_no = #{tradeNo},
+      user_id = #{userId}
+    where id = #{id}
+  </update>
+</mapper>

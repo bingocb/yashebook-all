@@ -1,0 +1,367 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yashebook.domain.mapper.AppraiseMapper" >
+  <resultMap id="BaseResultMap" type="com.yashebook.domain.po.Appraise" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="appraise_sn" property="appraiseSn" jdbcType="VARCHAR" />
+    <result column="content" property="content" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="delete_flag" property="deleteFlag" jdbcType="INTEGER" />
+    <result column="images" property="images" jdbcType="VARCHAR" />
+    <result column="is_show" property="isShow" jdbcType="INTEGER" />
+    <result column="order_sn" property="orderSn" jdbcType="VARCHAR" />
+    <result column="product_score" property="productScore" jdbcType="INTEGER" />
+    <result column="product_sn" property="productSn" jdbcType="VARCHAR" />
+    <result column="reply" property="reply" jdbcType="VARCHAR" />
+    <result column="reply_time" property="replyTime" jdbcType="TIMESTAMP" />
+    <result column="service_score" property="serviceScore" jdbcType="INTEGER" />
+    <result column="time_score" property="timeScore" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, appraise_sn, content, create_time, delete_flag, images, is_show, order_sn, product_score, 
+    product_sn, reply, reply_time, service_score, time_score, user_id
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.yashebook.domain.po.AppraiseCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from ys_appraise
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="mysqlOffset != null and mysqlLength != null" >
+      <![CDATA[ limit #{mysqlOffset} , #{mysqlLength} ]]>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from ys_appraise
+    where id = #{id}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from ys_appraise
+    where id = #{id}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.yashebook.domain.po.AppraiseCriteria" >
+    delete from ys_appraise
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.yashebook.domain.po.Appraise" >
+    insert into ys_appraise (id, appraise_sn, content, create_time, delete_flag, images, 
+      is_show, order_sn, product_score, product_sn, reply, reply_time, service_score, 
+      time_score, user_id)
+    values (#{id}, #{appraiseSn}, #{content}, #{createTime}, #{deleteFlag}, #{images}, 
+      #{isShow}, #{orderSn}, #{productScore}, #{productSn}, #{reply}, #{replyTime}, #{serviceScore}, 
+      #{timeScore}, #{userId})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yashebook.domain.po.Appraise" >
+    insert into ys_appraise
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="appraiseSn != null" >
+        appraise_sn,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="deleteFlag != null" >
+        delete_flag,
+      </if>
+      <if test="images != null" >
+        images,
+      </if>
+      <if test="isShow != null" >
+        is_show,
+      </if>
+      <if test="orderSn != null" >
+        order_sn,
+      </if>
+      <if test="productScore != null" >
+        product_score,
+      </if>
+      <if test="productSn != null" >
+        product_sn,
+      </if>
+      <if test="reply != null" >
+        reply,
+      </if>
+      <if test="replyTime != null" >
+        reply_time,
+      </if>
+      <if test="serviceScore != null" >
+        service_score,
+      </if>
+      <if test="timeScore != null" >
+        time_score,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id},
+      </if>
+      <if test="appraiseSn != null" >
+        #{appraiseSn},
+      </if>
+      <if test="content != null" >
+        #{content},
+      </if>
+      <if test="createTime != null" >
+        #{createTime},
+      </if>
+      <if test="deleteFlag != null" >
+        #{deleteFlag},
+      </if>
+      <if test="images != null" >
+        #{images},
+      </if>
+      <if test="isShow != null" >
+        #{isShow},
+      </if>
+      <if test="orderSn != null" >
+        #{orderSn},
+      </if>
+      <if test="productScore != null" >
+        #{productScore},
+      </if>
+      <if test="productSn != null" >
+        #{productSn},
+      </if>
+      <if test="reply != null" >
+        #{reply},
+      </if>
+      <if test="replyTime != null" >
+        #{replyTime},
+      </if>
+      <if test="serviceScore != null" >
+        #{serviceScore},
+      </if>
+      <if test="timeScore != null" >
+        #{timeScore},
+      </if>
+      <if test="userId != null" >
+        #{userId},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.yashebook.domain.po.AppraiseCriteria" resultType="java.lang.Integer" >
+    select count(*) from ys_appraise
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update ys_appraise
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id},
+      </if>
+      <if test="record.appraiseSn != null" >
+        appraise_sn = #{record.appraiseSn},
+      </if>
+      <if test="record.content != null" >
+        content = #{record.content},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime},
+      </if>
+      <if test="record.deleteFlag != null" >
+        delete_flag = #{record.deleteFlag},
+      </if>
+      <if test="record.images != null" >
+        images = #{record.images},
+      </if>
+      <if test="record.isShow != null" >
+        is_show = #{record.isShow},
+      </if>
+      <if test="record.orderSn != null" >
+        order_sn = #{record.orderSn},
+      </if>
+      <if test="record.productScore != null" >
+        product_score = #{record.productScore},
+      </if>
+      <if test="record.productSn != null" >
+        product_sn = #{record.productSn},
+      </if>
+      <if test="record.reply != null" >
+        reply = #{record.reply},
+      </if>
+      <if test="record.replyTime != null" >
+        reply_time = #{record.replyTime},
+      </if>
+      <if test="record.serviceScore != null" >
+        service_score = #{record.serviceScore},
+      </if>
+      <if test="record.timeScore != null" >
+        time_score = #{record.timeScore},
+      </if>
+      <if test="record.userId != null" >
+        user_id = #{record.userId},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update ys_appraise
+    set id = #{record.id},
+      appraise_sn = #{record.appraiseSn},
+      content = #{record.content},
+      create_time = #{record.createTime},
+      delete_flag = #{record.deleteFlag},
+      images = #{record.images},
+      is_show = #{record.isShow},
+      order_sn = #{record.orderSn},
+      product_score = #{record.productScore},
+      product_sn = #{record.productSn},
+      reply = #{record.reply},
+      reply_time = #{record.replyTime},
+      service_score = #{record.serviceScore},
+      time_score = #{record.timeScore},
+      user_id = #{record.userId}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yashebook.domain.po.Appraise" >
+    update ys_appraise
+    <set >
+      <if test="appraiseSn != null" >
+        appraise_sn = #{appraiseSn},
+      </if>
+      <if test="content != null" >
+        content = #{content},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime},
+      </if>
+      <if test="deleteFlag != null" >
+        delete_flag = #{deleteFlag},
+      </if>
+      <if test="images != null" >
+        images = #{images},
+      </if>
+      <if test="isShow != null" >
+        is_show = #{isShow},
+      </if>
+      <if test="orderSn != null" >
+        order_sn = #{orderSn},
+      </if>
+      <if test="productScore != null" >
+        product_score = #{productScore},
+      </if>
+      <if test="productSn != null" >
+        product_sn = #{productSn},
+      </if>
+      <if test="reply != null" >
+        reply = #{reply},
+      </if>
+      <if test="replyTime != null" >
+        reply_time = #{replyTime},
+      </if>
+      <if test="serviceScore != null" >
+        service_score = #{serviceScore},
+      </if>
+      <if test="timeScore != null" >
+        time_score = #{timeScore},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId},
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yashebook.domain.po.Appraise" >
+    update ys_appraise
+    set appraise_sn = #{appraiseSn},
+      content = #{content},
+      create_time = #{createTime},
+      delete_flag = #{deleteFlag},
+      images = #{images},
+      is_show = #{isShow},
+      order_sn = #{orderSn},
+      product_score = #{productScore},
+      product_sn = #{productSn},
+      reply = #{reply},
+      reply_time = #{replyTime},
+      service_score = #{serviceScore},
+      time_score = #{timeScore},
+      user_id = #{userId}
+    where id = #{id}
+  </update>
+</mapper>

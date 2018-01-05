@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yashebook.domain.mapper.UserRankMapper" >
+  <resultMap id="BaseResultMap" type="com.yashebook.domain.po.UserRank" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="delete_flag" property="deleteFlag" jdbcType="INTEGER" />
+    <result column="rank_image" property="rankImage" jdbcType="VARCHAR" />
+    <result column="rank_name" property="rankName" jdbcType="VARCHAR" />
+    <result column="rank_score" property="rankScore" jdbcType="INTEGER" />
+    <result column="rebate" property="rebate" jdbcType="DOUBLE" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, create_time, delete_flag, rank_image, rank_name, rank_score, rebate
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.yashebook.domain.po.UserRankCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from ys_user_rank
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="mysqlOffset != null and mysqlLength != null" >
+      <![CDATA[ limit #{mysqlOffset} , #{mysqlLength} ]]>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from ys_user_rank
+    where id = #{id}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from ys_user_rank
+    where id = #{id}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.yashebook.domain.po.UserRankCriteria" >
+    delete from ys_user_rank
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.yashebook.domain.po.UserRank" >
+    insert into ys_user_rank (id, create_time, delete_flag, rank_image, rank_name, rank_score, 
+      rebate)
+    values (#{id}, #{createTime}, #{deleteFlag}, #{rankImage}, #{rankName}, #{rankScore}, 
+      #{rebate})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yashebook.domain.po.UserRank" >
+    insert into ys_user_rank
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="deleteFlag != null" >
+        delete_flag,
+      </if>
+      <if test="rankImage != null" >
+        rank_image,
+      </if>
+      <if test="rankName != null" >
+        rank_name,
+      </if>
+      <if test="rankScore != null" >
+        rank_score,
+      </if>
+      <if test="rebate != null" >
+        rebate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id},
+      </if>
+      <if test="createTime != null" >
+        #{createTime},
+      </if>
+      <if test="deleteFlag != null" >
+        #{deleteFlag},
+      </if>
+      <if test="rankImage != null" >
+        #{rankImage},
+      </if>
+      <if test="rankName != null" >
+        #{rankName},
+      </if>
+      <if test="rankScore != null" >
+        #{rankScore},
+      </if>
+      <if test="rebate != null" >
+        #{rebate},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.yashebook.domain.po.UserRankCriteria" resultType="java.lang.Integer" >
+    select count(*) from ys_user_rank
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update ys_user_rank
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime},
+      </if>
+      <if test="record.deleteFlag != null" >
+        delete_flag = #{record.deleteFlag},
+      </if>
+      <if test="record.rankImage != null" >
+        rank_image = #{record.rankImage},
+      </if>
+      <if test="record.rankName != null" >
+        rank_name = #{record.rankName},
+      </if>
+      <if test="record.rankScore != null" >
+        rank_score = #{record.rankScore},
+      </if>
+      <if test="record.rebate != null" >
+        rebate = #{record.rebate},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update ys_user_rank
+    set id = #{record.id},
+      create_time = #{record.createTime},
+      delete_flag = #{record.deleteFlag},
+      rank_image = #{record.rankImage},
+      rank_name = #{record.rankName},
+      rank_score = #{record.rankScore},
+      rebate = #{record.rebate}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yashebook.domain.po.UserRank" >
+    update ys_user_rank
+    <set >
+      <if test="createTime != null" >
+        create_time = #{createTime},
+      </if>
+      <if test="deleteFlag != null" >
+        delete_flag = #{deleteFlag},
+      </if>
+      <if test="rankImage != null" >
+        rank_image = #{rankImage},
+      </if>
+      <if test="rankName != null" >
+        rank_name = #{rankName},
+      </if>
+      <if test="rankScore != null" >
+        rank_score = #{rankScore},
+      </if>
+      <if test="rebate != null" >
+        rebate = #{rebate},
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yashebook.domain.po.UserRank" >
+    update ys_user_rank
+    set create_time = #{createTime},
+      delete_flag = #{deleteFlag},
+      rank_image = #{rankImage},
+      rank_name = #{rankName},
+      rank_score = #{rankScore},
+      rebate = #{rebate}
+    where id = #{id}
+  </update>
+</mapper>

@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yashebook.domain.mapper.ExpressMapper" >
+  <resultMap id="BaseResultMap" type="com.yashebook.domain.po.Express" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="consignee_address" property="consigneeAddress" jdbcType="VARCHAR" />
+    <result column="consignee_name" property="consigneeName" jdbcType="VARCHAR" />
+    <result column="consignee_phone" property="consigneePhone" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="delete_flag" property="deleteFlag" jdbcType="INTEGER" />
+    <result column="delivery_time" property="deliveryTime" jdbcType="TIMESTAMP" />
+    <result column="express_company_name" property="expressCompanyName" jdbcType="VARCHAR" />
+    <result column="express_num" property="expressNum" jdbcType="VARCHAR" />
+    <result column="express_sn" property="expressSn" jdbcType="VARCHAR" />
+    <result column="modify_time" property="modifyTime" jdbcType="TIMESTAMP" />
+    <result column="receive_time" property="receiveTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, consignee_address, consignee_name, consignee_phone, create_time, delete_flag, 
+    delivery_time, express_company_name, express_num, express_sn, modify_time, receive_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.yashebook.domain.po.ExpressCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from ys_express
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="mysqlOffset != null and mysqlLength != null" >
+      <![CDATA[ limit #{mysqlOffset} , #{mysqlLength} ]]>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from ys_express
+    where id = #{id}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from ys_express
+    where id = #{id}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.yashebook.domain.po.ExpressCriteria" >
+    delete from ys_express
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.yashebook.domain.po.Express" >
+    insert into ys_express (id, consignee_address, consignee_name, consignee_phone, create_time, 
+      delete_flag, delivery_time, express_company_name, express_num, express_sn, 
+      modify_time, receive_time)
+    values (#{id}, #{consigneeAddress}, #{consigneeName}, #{consigneePhone}, #{createTime}, 
+      #{deleteFlag}, #{deliveryTime}, #{expressCompanyName}, #{expressNum}, #{expressSn}, 
+      #{modifyTime}, #{receiveTime})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yashebook.domain.po.Express" >
+    insert into ys_express
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="consigneeAddress != null" >
+        consignee_address,
+      </if>
+      <if test="consigneeName != null" >
+        consignee_name,
+      </if>
+      <if test="consigneePhone != null" >
+        consignee_phone,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="deleteFlag != null" >
+        delete_flag,
+      </if>
+      <if test="deliveryTime != null" >
+        delivery_time,
+      </if>
+      <if test="expressCompanyName != null" >
+        express_company_name,
+      </if>
+      <if test="expressNum != null" >
+        express_num,
+      </if>
+      <if test="expressSn != null" >
+        express_sn,
+      </if>
+      <if test="modifyTime != null" >
+        modify_time,
+      </if>
+      <if test="receiveTime != null" >
+        receive_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id},
+      </if>
+      <if test="consigneeAddress != null" >
+        #{consigneeAddress},
+      </if>
+      <if test="consigneeName != null" >
+        #{consigneeName},
+      </if>
+      <if test="consigneePhone != null" >
+        #{consigneePhone},
+      </if>
+      <if test="createTime != null" >
+        #{createTime},
+      </if>
+      <if test="deleteFlag != null" >
+        #{deleteFlag},
+      </if>
+      <if test="deliveryTime != null" >
+        #{deliveryTime},
+      </if>
+      <if test="expressCompanyName != null" >
+        #{expressCompanyName},
+      </if>
+      <if test="expressNum != null" >
+        #{expressNum},
+      </if>
+      <if test="expressSn != null" >
+        #{expressSn},
+      </if>
+      <if test="modifyTime != null" >
+        #{modifyTime},
+      </if>
+      <if test="receiveTime != null" >
+        #{receiveTime},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.yashebook.domain.po.ExpressCriteria" resultType="java.lang.Integer" >
+    select count(*) from ys_express
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update ys_express
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id},
+      </if>
+      <if test="record.consigneeAddress != null" >
+        consignee_address = #{record.consigneeAddress},
+      </if>
+      <if test="record.consigneeName != null" >
+        consignee_name = #{record.consigneeName},
+      </if>
+      <if test="record.consigneePhone != null" >
+        consignee_phone = #{record.consigneePhone},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime},
+      </if>
+      <if test="record.deleteFlag != null" >
+        delete_flag = #{record.deleteFlag},
+      </if>
+      <if test="record.deliveryTime != null" >
+        delivery_time = #{record.deliveryTime},
+      </if>
+      <if test="record.expressCompanyName != null" >
+        express_company_name = #{record.expressCompanyName},
+      </if>
+      <if test="record.expressNum != null" >
+        express_num = #{record.expressNum},
+      </if>
+      <if test="record.expressSn != null" >
+        express_sn = #{record.expressSn},
+      </if>
+      <if test="record.modifyTime != null" >
+        modify_time = #{record.modifyTime},
+      </if>
+      <if test="record.receiveTime != null" >
+        receive_time = #{record.receiveTime},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update ys_express
+    set id = #{record.id},
+      consignee_address = #{record.consigneeAddress},
+      consignee_name = #{record.consigneeName},
+      consignee_phone = #{record.consigneePhone},
+      create_time = #{record.createTime},
+      delete_flag = #{record.deleteFlag},
+      delivery_time = #{record.deliveryTime},
+      express_company_name = #{record.expressCompanyName},
+      express_num = #{record.expressNum},
+      express_sn = #{record.expressSn},
+      modify_time = #{record.modifyTime},
+      receive_time = #{record.receiveTime}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yashebook.domain.po.Express" >
+    update ys_express
+    <set >
+      <if test="consigneeAddress != null" >
+        consignee_address = #{consigneeAddress},
+      </if>
+      <if test="consigneeName != null" >
+        consignee_name = #{consigneeName},
+      </if>
+      <if test="consigneePhone != null" >
+        consignee_phone = #{consigneePhone},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime},
+      </if>
+      <if test="deleteFlag != null" >
+        delete_flag = #{deleteFlag},
+      </if>
+      <if test="deliveryTime != null" >
+        delivery_time = #{deliveryTime},
+      </if>
+      <if test="expressCompanyName != null" >
+        express_company_name = #{expressCompanyName},
+      </if>
+      <if test="expressNum != null" >
+        express_num = #{expressNum},
+      </if>
+      <if test="expressSn != null" >
+        express_sn = #{expressSn},
+      </if>
+      <if test="modifyTime != null" >
+        modify_time = #{modifyTime},
+      </if>
+      <if test="receiveTime != null" >
+        receive_time = #{receiveTime},
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yashebook.domain.po.Express" >
+    update ys_express
+    set consignee_address = #{consigneeAddress},
+      consignee_name = #{consigneeName},
+      consignee_phone = #{consigneePhone},
+      create_time = #{createTime},
+      delete_flag = #{deleteFlag},
+      delivery_time = #{deliveryTime},
+      express_company_name = #{expressCompanyName},
+      express_num = #{expressNum},
+      express_sn = #{expressSn},
+      modify_time = #{modifyTime},
+      receive_time = #{receiveTime}
+    where id = #{id}
+  </update>
+</mapper>

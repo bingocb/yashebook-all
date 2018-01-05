@@ -2,30 +2,39 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.yashebook.domain.mapper.BookMapper" >
   <resultMap id="BaseResultMap" type="com.yashebook.domain.po.Book" >
-    <id column="id" property="id" jdbcType="VARCHAR" />
-    <result column="isbn" property="isbn" jdbcType="VARCHAR" />
-    <result column="author" property="author" jdbcType="VARCHAR" />
-    <result column="author_introduction" property="authorIntroduction" jdbcType="VARCHAR" />
-    <result column="book_folio" property="bookFolio" jdbcType="VARCHAR" />
-    <result column="book_fonts" property="bookFonts" jdbcType="VARCHAR" />
-    <result column="book_name" property="bookName" jdbcType="VARCHAR" />
-    <result column="book_page" property="bookPage" jdbcType="VARCHAR" />
-    <result column="book_sn" property="bookSn" jdbcType="VARCHAR" />
-    <result column="book_version" property="bookVersion" jdbcType="VARCHAR" />
-    <result column="catalog" property="catalog" jdbcType="VARCHAR" />
-    <result column="comment" property="comment" jdbcType="VARCHAR" />
-    <result column="content" property="content" jdbcType="VARCHAR" />
-    <result column="content_introduction" property="contentIntroduction" jdbcType="VARCHAR" />
-    <result column="covers" property="covers" jdbcType="VARCHAR" />
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="books_sn" property="booksSn" jdbcType="VARCHAR" />
+    <result column="product_no" property="productNo" jdbcType="VARCHAR" />
+    <result column="books_name" property="booksName" jdbcType="VARCHAR" />
+    <result column="books_imgs" property="booksImgs" jdbcType="VARCHAR" />
+    <result column="market_price" property="marketPrice" jdbcType="INTEGER" />
+    <result column="shop_price" property="shopPrice" jdbcType="INTEGER" />
+    <result column="books_stock" property="booksStock" jdbcType="INTEGER" />
+    <result column="warn_stock" property="warnStock" jdbcType="INTEGER" />
+    <result column="books_util" property="booksUtil" jdbcType="VARCHAR" />
+    <result column="is_sale" property="isSale" jdbcType="TINYINT" />
+    <result column="is_best" property="isBest" jdbcType="TINYINT" />
+    <result column="is_hot" property="isHot" jdbcType="TINYINT" />
+    <result column="is_new" property="isNew" jdbcType="TINYINT" />
+    <result column="is_recommend" property="isRecommend" jdbcType="TINYINT" />
+    <result column="books_catsn_path" property="booksCatsnPath" jdbcType="VARCHAR" />
+    <result column="books_catsn" property="booksCatsn" jdbcType="VARCHAR" />
+    <result column="press_sn" property="pressSn" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="TINYINT" />
+    <result column="sale_num" property="saleNum" jdbcType="INTEGER" />
+    <result column="sale_time" property="saleTime" jdbcType="TIMESTAMP" />
+    <result column="visit_num" property="visitNum" jdbcType="INTEGER" />
+    <result column="appraise_num" property="appraiseNum" jdbcType="INTEGER" />
+    <result column="books_search_keywords" property="booksSearchKeywords" jdbcType="VARCHAR" />
+    <result column="illegal_remarks" property="illegalRemarks" jdbcType="VARCHAR" />
+    <result column="delete_flag" property="deleteFlag" jdbcType="TINYINT" />
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
-    <result column="editor_recommend" property="editorRecommend" jdbcType="VARCHAR" />
-    <result column="is_full" property="isFull" jdbcType="INTEGER" />
-    <result column="material" property="material" jdbcType="VARCHAR" />
     <result column="modify_time" property="modifyTime" jdbcType="TIMESTAMP" />
-    <result column="pack_type" property="packType" jdbcType="VARCHAR" />
-    <result column="press_name" property="pressName" jdbcType="VARCHAR" />
-    <result column="print_time" property="printTime" jdbcType="TIMESTAMP" />
-    <result column="publishing_time" property="publishingTime" jdbcType="VARCHAR" />
+    <result column="detele_flag" property="deteleFlag" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.yashebook.domain.po.BookWithBLOBs" extends="BaseResultMap" >
+    <result column="books_tips" property="booksTips" jdbcType="LONGVARCHAR" />
+    <result column="gallery" property="gallery" jdbcType="LONGVARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -86,18 +95,37 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, isbn, author, author_introduction, book_folio, book_fonts, book_name, book_page, 
-    book_sn, book_version, catalog, comment, content, content_introduction, covers, create_time, 
-    editor_recommend, is_full, material, modify_time, pack_type, press_name, print_time, 
-    publishing_time
+    id, books_sn, product_no, books_name, books_imgs, market_price, shop_price, books_stock, 
+    warn_stock, books_util, is_sale, is_best, is_hot, is_new, is_recommend, books_catsn_path, 
+    books_catsn, press_sn, status, sale_num, sale_time, visit_num, appraise_num, books_search_keywords, 
+    illegal_remarks, delete_flag, create_time, modify_time, detele_flag
   </sql>
+  <sql id="Blob_Column_List" >
+    books_tips, gallery
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.yashebook.domain.po.BookCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from ys_books
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.yashebook.domain.po.BookCriteria" >
     select
     <if test="distinct" >
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from ys_book
+    from ys_books
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
@@ -108,401 +136,570 @@
       <![CDATA[ limit #{mysqlOffset} , #{mysqlLength} ]]>
     </if>
   </select>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
-    from ys_book
+    ,
+    <include refid="Blob_Column_List" />
+    from ys_books
     where id = #{id}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
-    delete from ys_book
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from ys_books
     where id = #{id}
   </delete>
   <delete id="deleteByExample" parameterType="com.yashebook.domain.po.BookCriteria" >
-    delete from ys_book
+    delete from ys_books
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.yashebook.domain.po.Book" >
-    insert into ys_book (id, isbn, author, author_introduction, book_folio, book_fonts, 
-      book_name, book_page, book_sn, book_version, catalog, comment, content, 
-      content_introduction, covers, create_time, editor_recommend, is_full, 
-      material, modify_time, pack_type, press_name, print_time, publishing_time
-      )
-    values (#{id}, #{isbn}, #{author}, #{authorIntroduction}, #{bookFolio}, #{bookFonts}, 
-      #{bookName}, #{bookPage}, #{bookSn}, #{bookVersion}, #{catalog}, #{comment}, #{content}, 
-      #{contentIntroduction}, #{covers}, #{createTime}, #{editorRecommend}, #{isFull}, 
-      #{material}, #{modifyTime}, #{packType}, #{pressName}, #{printTime}, #{publishingTime}
-      )
+  <insert id="insert" parameterType="com.yashebook.domain.po.BookWithBLOBs" >
+    insert into ys_books (id, books_sn, product_no, books_name, books_imgs, market_price, 
+      shop_price, books_stock, warn_stock, books_util, is_sale, is_best, 
+      is_hot, is_new, is_recommend, books_catsn_path, books_catsn, press_sn, 
+      status, sale_num, sale_time, visit_num, appraise_num, books_search_keywords, 
+      illegal_remarks, delete_flag, create_time, modify_time, detele_flag, 
+      books_tips, gallery)
+    values (#{id}, #{booksSn}, #{productNo}, #{booksName}, #{booksImgs}, #{marketPrice}, 
+      #{shopPrice}, #{booksStock}, #{warnStock}, #{booksUtil}, #{isSale}, #{isBest}, 
+      #{isHot}, #{isNew}, #{isRecommend}, #{booksCatsnPath}, #{booksCatsn}, #{pressSn}, 
+      #{status}, #{saleNum}, #{saleTime}, #{visitNum}, #{appraiseNum}, #{booksSearchKeywords}, 
+      #{illegalRemarks}, #{deleteFlag}, #{createTime}, #{modifyTime}, #{deteleFlag}, 
+      #{booksTips}, #{gallery})
   </insert>
-  <insert id="insertSelective" parameterType="com.yashebook.domain.po.Book" >
-    insert into ys_book
+  <insert id="insertSelective" parameterType="com.yashebook.domain.po.BookWithBLOBs" >
+    insert into ys_books
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         id,
       </if>
-      <if test="isbn != null" >
-        isbn,
+      <if test="booksSn != null" >
+        books_sn,
       </if>
-      <if test="author != null" >
-        author,
+      <if test="productNo != null" >
+        product_no,
       </if>
-      <if test="authorIntroduction != null" >
-        author_introduction,
+      <if test="booksName != null" >
+        books_name,
       </if>
-      <if test="bookFolio != null" >
-        book_folio,
+      <if test="booksImgs != null" >
+        books_imgs,
       </if>
-      <if test="bookFonts != null" >
-        book_fonts,
+      <if test="marketPrice != null" >
+        market_price,
       </if>
-      <if test="bookName != null" >
-        book_name,
+      <if test="shopPrice != null" >
+        shop_price,
       </if>
-      <if test="bookPage != null" >
-        book_page,
+      <if test="booksStock != null" >
+        books_stock,
       </if>
-      <if test="bookSn != null" >
-        book_sn,
+      <if test="warnStock != null" >
+        warn_stock,
       </if>
-      <if test="bookVersion != null" >
-        book_version,
+      <if test="booksUtil != null" >
+        books_util,
       </if>
-      <if test="catalog != null" >
-        catalog,
+      <if test="isSale != null" >
+        is_sale,
       </if>
-      <if test="comment != null" >
-        comment,
+      <if test="isBest != null" >
+        is_best,
       </if>
-      <if test="content != null" >
-        content,
+      <if test="isHot != null" >
+        is_hot,
       </if>
-      <if test="contentIntroduction != null" >
-        content_introduction,
+      <if test="isNew != null" >
+        is_new,
       </if>
-      <if test="covers != null" >
-        covers,
+      <if test="isRecommend != null" >
+        is_recommend,
+      </if>
+      <if test="booksCatsnPath != null" >
+        books_catsn_path,
+      </if>
+      <if test="booksCatsn != null" >
+        books_catsn,
+      </if>
+      <if test="pressSn != null" >
+        press_sn,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="saleNum != null" >
+        sale_num,
+      </if>
+      <if test="saleTime != null" >
+        sale_time,
+      </if>
+      <if test="visitNum != null" >
+        visit_num,
+      </if>
+      <if test="appraiseNum != null" >
+        appraise_num,
+      </if>
+      <if test="booksSearchKeywords != null" >
+        books_search_keywords,
+      </if>
+      <if test="illegalRemarks != null" >
+        illegal_remarks,
+      </if>
+      <if test="deleteFlag != null" >
+        delete_flag,
       </if>
       <if test="createTime != null" >
         create_time,
       </if>
-      <if test="editorRecommend != null" >
-        editor_recommend,
-      </if>
-      <if test="isFull != null" >
-        is_full,
-      </if>
-      <if test="material != null" >
-        material,
-      </if>
       <if test="modifyTime != null" >
         modify_time,
       </if>
-      <if test="packType != null" >
-        pack_type,
+      <if test="deteleFlag != null" >
+        detele_flag,
       </if>
-      <if test="pressName != null" >
-        press_name,
+      <if test="booksTips != null" >
+        books_tips,
       </if>
-      <if test="printTime != null" >
-        print_time,
-      </if>
-      <if test="publishingTime != null" >
-        publishing_time,
+      <if test="gallery != null" >
+        gallery,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         #{id},
       </if>
-      <if test="isbn != null" >
-        #{isbn},
+      <if test="booksSn != null" >
+        #{booksSn},
       </if>
-      <if test="author != null" >
-        #{author},
+      <if test="productNo != null" >
+        #{productNo},
       </if>
-      <if test="authorIntroduction != null" >
-        #{authorIntroduction},
+      <if test="booksName != null" >
+        #{booksName},
       </if>
-      <if test="bookFolio != null" >
-        #{bookFolio},
+      <if test="booksImgs != null" >
+        #{booksImgs},
       </if>
-      <if test="bookFonts != null" >
-        #{bookFonts},
+      <if test="marketPrice != null" >
+        #{marketPrice},
       </if>
-      <if test="bookName != null" >
-        #{bookName},
+      <if test="shopPrice != null" >
+        #{shopPrice},
       </if>
-      <if test="bookPage != null" >
-        #{bookPage},
+      <if test="booksStock != null" >
+        #{booksStock},
       </if>
-      <if test="bookSn != null" >
-        #{bookSn},
+      <if test="warnStock != null" >
+        #{warnStock},
       </if>
-      <if test="bookVersion != null" >
-        #{bookVersion},
+      <if test="booksUtil != null" >
+        #{booksUtil},
       </if>
-      <if test="catalog != null" >
-        #{catalog},
+      <if test="isSale != null" >
+        #{isSale},
       </if>
-      <if test="comment != null" >
-        #{comment},
+      <if test="isBest != null" >
+        #{isBest},
       </if>
-      <if test="content != null" >
-        #{content},
+      <if test="isHot != null" >
+        #{isHot},
       </if>
-      <if test="contentIntroduction != null" >
-        #{contentIntroduction},
+      <if test="isNew != null" >
+        #{isNew},
       </if>
-      <if test="covers != null" >
-        #{covers},
+      <if test="isRecommend != null" >
+        #{isRecommend},
+      </if>
+      <if test="booksCatsnPath != null" >
+        #{booksCatsnPath},
+      </if>
+      <if test="booksCatsn != null" >
+        #{booksCatsn},
+      </if>
+      <if test="pressSn != null" >
+        #{pressSn},
+      </if>
+      <if test="status != null" >
+        #{status},
+      </if>
+      <if test="saleNum != null" >
+        #{saleNum},
+      </if>
+      <if test="saleTime != null" >
+        #{saleTime},
+      </if>
+      <if test="visitNum != null" >
+        #{visitNum},
+      </if>
+      <if test="appraiseNum != null" >
+        #{appraiseNum},
+      </if>
+      <if test="booksSearchKeywords != null" >
+        #{booksSearchKeywords},
+      </if>
+      <if test="illegalRemarks != null" >
+        #{illegalRemarks},
+      </if>
+      <if test="deleteFlag != null" >
+        #{deleteFlag},
       </if>
       <if test="createTime != null" >
         #{createTime},
       </if>
-      <if test="editorRecommend != null" >
-        #{editorRecommend},
-      </if>
-      <if test="isFull != null" >
-        #{isFull},
-      </if>
-      <if test="material != null" >
-        #{material},
-      </if>
       <if test="modifyTime != null" >
         #{modifyTime},
       </if>
-      <if test="packType != null" >
-        #{packType},
+      <if test="deteleFlag != null" >
+        #{deteleFlag},
       </if>
-      <if test="pressName != null" >
-        #{pressName},
+      <if test="booksTips != null" >
+        #{booksTips},
       </if>
-      <if test="printTime != null" >
-        #{printTime},
-      </if>
-      <if test="publishingTime != null" >
-        #{publishingTime},
+      <if test="gallery != null" >
+        #{gallery},
       </if>
     </trim>
   </insert>
   <select id="countByExample" parameterType="com.yashebook.domain.po.BookCriteria" resultType="java.lang.Integer" >
-    select count(*) from ys_book
+    select count(*) from ys_books
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map" >
-    update ys_book
+    update ys_books
     <set >
       <if test="record.id != null" >
         id = #{record.id},
       </if>
-      <if test="record.isbn != null" >
-        isbn = #{record.isbn},
+      <if test="record.booksSn != null" >
+        books_sn = #{record.booksSn},
       </if>
-      <if test="record.author != null" >
-        author = #{record.author},
+      <if test="record.productNo != null" >
+        product_no = #{record.productNo},
       </if>
-      <if test="record.authorIntroduction != null" >
-        author_introduction = #{record.authorIntroduction},
+      <if test="record.booksName != null" >
+        books_name = #{record.booksName},
       </if>
-      <if test="record.bookFolio != null" >
-        book_folio = #{record.bookFolio},
+      <if test="record.booksImgs != null" >
+        books_imgs = #{record.booksImgs},
       </if>
-      <if test="record.bookFonts != null" >
-        book_fonts = #{record.bookFonts},
+      <if test="record.marketPrice != null" >
+        market_price = #{record.marketPrice},
       </if>
-      <if test="record.bookName != null" >
-        book_name = #{record.bookName},
+      <if test="record.shopPrice != null" >
+        shop_price = #{record.shopPrice},
       </if>
-      <if test="record.bookPage != null" >
-        book_page = #{record.bookPage},
+      <if test="record.booksStock != null" >
+        books_stock = #{record.booksStock},
       </if>
-      <if test="record.bookSn != null" >
-        book_sn = #{record.bookSn},
+      <if test="record.warnStock != null" >
+        warn_stock = #{record.warnStock},
       </if>
-      <if test="record.bookVersion != null" >
-        book_version = #{record.bookVersion},
+      <if test="record.booksUtil != null" >
+        books_util = #{record.booksUtil},
       </if>
-      <if test="record.catalog != null" >
-        catalog = #{record.catalog},
+      <if test="record.isSale != null" >
+        is_sale = #{record.isSale},
       </if>
-      <if test="record.comment != null" >
-        comment = #{record.comment},
+      <if test="record.isBest != null" >
+        is_best = #{record.isBest},
       </if>
-      <if test="record.content != null" >
-        content = #{record.content},
+      <if test="record.isHot != null" >
+        is_hot = #{record.isHot},
       </if>
-      <if test="record.contentIntroduction != null" >
-        content_introduction = #{record.contentIntroduction},
+      <if test="record.isNew != null" >
+        is_new = #{record.isNew},
       </if>
-      <if test="record.covers != null" >
-        covers = #{record.covers},
+      <if test="record.isRecommend != null" >
+        is_recommend = #{record.isRecommend},
+      </if>
+      <if test="record.booksCatsnPath != null" >
+        books_catsn_path = #{record.booksCatsnPath},
+      </if>
+      <if test="record.booksCatsn != null" >
+        books_catsn = #{record.booksCatsn},
+      </if>
+      <if test="record.pressSn != null" >
+        press_sn = #{record.pressSn},
+      </if>
+      <if test="record.status != null" >
+        status = #{record.status},
+      </if>
+      <if test="record.saleNum != null" >
+        sale_num = #{record.saleNum},
+      </if>
+      <if test="record.saleTime != null" >
+        sale_time = #{record.saleTime},
+      </if>
+      <if test="record.visitNum != null" >
+        visit_num = #{record.visitNum},
+      </if>
+      <if test="record.appraiseNum != null" >
+        appraise_num = #{record.appraiseNum},
+      </if>
+      <if test="record.booksSearchKeywords != null" >
+        books_search_keywords = #{record.booksSearchKeywords},
+      </if>
+      <if test="record.illegalRemarks != null" >
+        illegal_remarks = #{record.illegalRemarks},
+      </if>
+      <if test="record.deleteFlag != null" >
+        delete_flag = #{record.deleteFlag},
       </if>
       <if test="record.createTime != null" >
         create_time = #{record.createTime},
       </if>
-      <if test="record.editorRecommend != null" >
-        editor_recommend = #{record.editorRecommend},
-      </if>
-      <if test="record.isFull != null" >
-        is_full = #{record.isFull},
-      </if>
-      <if test="record.material != null" >
-        material = #{record.material},
-      </if>
       <if test="record.modifyTime != null" >
         modify_time = #{record.modifyTime},
       </if>
-      <if test="record.packType != null" >
-        pack_type = #{record.packType},
+      <if test="record.deteleFlag != null" >
+        detele_flag = #{record.deteleFlag},
       </if>
-      <if test="record.pressName != null" >
-        press_name = #{record.pressName},
+      <if test="record.booksTips != null" >
+        books_tips = #{record.booksTips},
       </if>
-      <if test="record.printTime != null" >
-        print_time = #{record.printTime},
-      </if>
-      <if test="record.publishingTime != null" >
-        publishing_time = #{record.publishingTime},
+      <if test="record.gallery != null" >
+        gallery = #{record.gallery},
       </if>
     </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update ys_books
+    set id = #{record.id},
+      books_sn = #{record.booksSn},
+      product_no = #{record.productNo},
+      books_name = #{record.booksName},
+      books_imgs = #{record.booksImgs},
+      market_price = #{record.marketPrice},
+      shop_price = #{record.shopPrice},
+      books_stock = #{record.booksStock},
+      warn_stock = #{record.warnStock},
+      books_util = #{record.booksUtil},
+      is_sale = #{record.isSale},
+      is_best = #{record.isBest},
+      is_hot = #{record.isHot},
+      is_new = #{record.isNew},
+      is_recommend = #{record.isRecommend},
+      books_catsn_path = #{record.booksCatsnPath},
+      books_catsn = #{record.booksCatsn},
+      press_sn = #{record.pressSn},
+      status = #{record.status},
+      sale_num = #{record.saleNum},
+      sale_time = #{record.saleTime},
+      visit_num = #{record.visitNum},
+      appraise_num = #{record.appraiseNum},
+      books_search_keywords = #{record.booksSearchKeywords},
+      illegal_remarks = #{record.illegalRemarks},
+      delete_flag = #{record.deleteFlag},
+      create_time = #{record.createTime},
+      modify_time = #{record.modifyTime},
+      detele_flag = #{record.deteleFlag},
+      books_tips = #{record.booksTips},
+      gallery = #{record.gallery}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
   <update id="updateByExample" parameterType="map" >
-    update ys_book
+    update ys_books
     set id = #{record.id},
-      isbn = #{record.isbn},
-      author = #{record.author},
-      author_introduction = #{record.authorIntroduction},
-      book_folio = #{record.bookFolio},
-      book_fonts = #{record.bookFonts},
-      book_name = #{record.bookName},
-      book_page = #{record.bookPage},
-      book_sn = #{record.bookSn},
-      book_version = #{record.bookVersion},
-      catalog = #{record.catalog},
-      comment = #{record.comment},
-      content = #{record.content},
-      content_introduction = #{record.contentIntroduction},
-      covers = #{record.covers},
+      books_sn = #{record.booksSn},
+      product_no = #{record.productNo},
+      books_name = #{record.booksName},
+      books_imgs = #{record.booksImgs},
+      market_price = #{record.marketPrice},
+      shop_price = #{record.shopPrice},
+      books_stock = #{record.booksStock},
+      warn_stock = #{record.warnStock},
+      books_util = #{record.booksUtil},
+      is_sale = #{record.isSale},
+      is_best = #{record.isBest},
+      is_hot = #{record.isHot},
+      is_new = #{record.isNew},
+      is_recommend = #{record.isRecommend},
+      books_catsn_path = #{record.booksCatsnPath},
+      books_catsn = #{record.booksCatsn},
+      press_sn = #{record.pressSn},
+      status = #{record.status},
+      sale_num = #{record.saleNum},
+      sale_time = #{record.saleTime},
+      visit_num = #{record.visitNum},
+      appraise_num = #{record.appraiseNum},
+      books_search_keywords = #{record.booksSearchKeywords},
+      illegal_remarks = #{record.illegalRemarks},
+      delete_flag = #{record.deleteFlag},
       create_time = #{record.createTime},
-      editor_recommend = #{record.editorRecommend},
-      is_full = #{record.isFull},
-      material = #{record.material},
       modify_time = #{record.modifyTime},
-      pack_type = #{record.packType},
-      press_name = #{record.pressName},
-      print_time = #{record.printTime},
-      publishing_time = #{record.publishingTime}
+      detele_flag = #{record.deteleFlag}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.yashebook.domain.po.Book" >
-    update ys_book
+  <update id="updateByPrimaryKeySelective" parameterType="com.yashebook.domain.po.BookWithBLOBs" >
+    update ys_books
     <set >
-      <if test="isbn != null" >
-        isbn = #{isbn},
+      <if test="booksSn != null" >
+        books_sn = #{booksSn},
       </if>
-      <if test="author != null" >
-        author = #{author},
+      <if test="productNo != null" >
+        product_no = #{productNo},
       </if>
-      <if test="authorIntroduction != null" >
-        author_introduction = #{authorIntroduction},
+      <if test="booksName != null" >
+        books_name = #{booksName},
       </if>
-      <if test="bookFolio != null" >
-        book_folio = #{bookFolio},
+      <if test="booksImgs != null" >
+        books_imgs = #{booksImgs},
       </if>
-      <if test="bookFonts != null" >
-        book_fonts = #{bookFonts},
+      <if test="marketPrice != null" >
+        market_price = #{marketPrice},
       </if>
-      <if test="bookName != null" >
-        book_name = #{bookName},
+      <if test="shopPrice != null" >
+        shop_price = #{shopPrice},
       </if>
-      <if test="bookPage != null" >
-        book_page = #{bookPage},
+      <if test="booksStock != null" >
+        books_stock = #{booksStock},
       </if>
-      <if test="bookSn != null" >
-        book_sn = #{bookSn},
+      <if test="warnStock != null" >
+        warn_stock = #{warnStock},
       </if>
-      <if test="bookVersion != null" >
-        book_version = #{bookVersion},
+      <if test="booksUtil != null" >
+        books_util = #{booksUtil},
       </if>
-      <if test="catalog != null" >
-        catalog = #{catalog},
+      <if test="isSale != null" >
+        is_sale = #{isSale},
       </if>
-      <if test="comment != null" >
-        comment = #{comment},
+      <if test="isBest != null" >
+        is_best = #{isBest},
       </if>
-      <if test="content != null" >
-        content = #{content},
+      <if test="isHot != null" >
+        is_hot = #{isHot},
       </if>
-      <if test="contentIntroduction != null" >
-        content_introduction = #{contentIntroduction},
+      <if test="isNew != null" >
+        is_new = #{isNew},
       </if>
-      <if test="covers != null" >
-        covers = #{covers},
+      <if test="isRecommend != null" >
+        is_recommend = #{isRecommend},
+      </if>
+      <if test="booksCatsnPath != null" >
+        books_catsn_path = #{booksCatsnPath},
+      </if>
+      <if test="booksCatsn != null" >
+        books_catsn = #{booksCatsn},
+      </if>
+      <if test="pressSn != null" >
+        press_sn = #{pressSn},
+      </if>
+      <if test="status != null" >
+        status = #{status},
+      </if>
+      <if test="saleNum != null" >
+        sale_num = #{saleNum},
+      </if>
+      <if test="saleTime != null" >
+        sale_time = #{saleTime},
+      </if>
+      <if test="visitNum != null" >
+        visit_num = #{visitNum},
+      </if>
+      <if test="appraiseNum != null" >
+        appraise_num = #{appraiseNum},
+      </if>
+      <if test="booksSearchKeywords != null" >
+        books_search_keywords = #{booksSearchKeywords},
+      </if>
+      <if test="illegalRemarks != null" >
+        illegal_remarks = #{illegalRemarks},
+      </if>
+      <if test="deleteFlag != null" >
+        delete_flag = #{deleteFlag},
       </if>
       <if test="createTime != null" >
         create_time = #{createTime},
       </if>
-      <if test="editorRecommend != null" >
-        editor_recommend = #{editorRecommend},
-      </if>
-      <if test="isFull != null" >
-        is_full = #{isFull},
-      </if>
-      <if test="material != null" >
-        material = #{material},
-      </if>
       <if test="modifyTime != null" >
         modify_time = #{modifyTime},
       </if>
-      <if test="packType != null" >
-        pack_type = #{packType},
+      <if test="deteleFlag != null" >
+        detele_flag = #{deteleFlag},
       </if>
-      <if test="pressName != null" >
-        press_name = #{pressName},
+      <if test="booksTips != null" >
+        books_tips = #{booksTips},
       </if>
-      <if test="printTime != null" >
-        print_time = #{printTime},
-      </if>
-      <if test="publishingTime != null" >
-        publishing_time = #{publishingTime},
+      <if test="gallery != null" >
+        gallery = #{gallery},
       </if>
     </set>
     where id = #{id}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.yashebook.domain.po.Book" >
-    update ys_book
-    set isbn = #{isbn},
-      author = #{author},
-      author_introduction = #{authorIntroduction},
-      book_folio = #{bookFolio},
-      book_fonts = #{bookFonts},
-      book_name = #{bookName},
-      book_page = #{bookPage},
-      book_sn = #{bookSn},
-      book_version = #{bookVersion},
-      catalog = #{catalog},
-      comment = #{comment},
-      content = #{content},
-      content_introduction = #{contentIntroduction},
-      covers = #{covers},
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.yashebook.domain.po.BookWithBLOBs" >
+    update ys_books
+    set books_sn = #{booksSn},
+      product_no = #{productNo},
+      books_name = #{booksName},
+      books_imgs = #{booksImgs},
+      market_price = #{marketPrice},
+      shop_price = #{shopPrice},
+      books_stock = #{booksStock},
+      warn_stock = #{warnStock},
+      books_util = #{booksUtil},
+      is_sale = #{isSale},
+      is_best = #{isBest},
+      is_hot = #{isHot},
+      is_new = #{isNew},
+      is_recommend = #{isRecommend},
+      books_catsn_path = #{booksCatsnPath},
+      books_catsn = #{booksCatsn},
+      press_sn = #{pressSn},
+      status = #{status},
+      sale_num = #{saleNum},
+      sale_time = #{saleTime},
+      visit_num = #{visitNum},
+      appraise_num = #{appraiseNum},
+      books_search_keywords = #{booksSearchKeywords},
+      illegal_remarks = #{illegalRemarks},
+      delete_flag = #{deleteFlag},
       create_time = #{createTime},
-      editor_recommend = #{editorRecommend},
-      is_full = #{isFull},
-      material = #{material},
       modify_time = #{modifyTime},
-      pack_type = #{packType},
-      press_name = #{pressName},
-      print_time = #{printTime},
-      publishing_time = #{publishingTime}
+      detele_flag = #{deteleFlag},
+      books_tips = #{booksTips},
+      gallery = #{gallery}
+    where id = #{id}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yashebook.domain.po.Book" >
+    update ys_books
+    set books_sn = #{booksSn},
+      product_no = #{productNo},
+      books_name = #{booksName},
+      books_imgs = #{booksImgs},
+      market_price = #{marketPrice},
+      shop_price = #{shopPrice},
+      books_stock = #{booksStock},
+      warn_stock = #{warnStock},
+      books_util = #{booksUtil},
+      is_sale = #{isSale},
+      is_best = #{isBest},
+      is_hot = #{isHot},
+      is_new = #{isNew},
+      is_recommend = #{isRecommend},
+      books_catsn_path = #{booksCatsnPath},
+      books_catsn = #{booksCatsn},
+      press_sn = #{pressSn},
+      status = #{status},
+      sale_num = #{saleNum},
+      sale_time = #{saleTime},
+      visit_num = #{visitNum},
+      appraise_num = #{appraiseNum},
+      books_search_keywords = #{booksSearchKeywords},
+      illegal_remarks = #{illegalRemarks},
+      delete_flag = #{deleteFlag},
+      create_time = #{createTime},
+      modify_time = #{modifyTime},
+      detele_flag = #{deteleFlag}
     where id = #{id}
   </update>
 </mapper>

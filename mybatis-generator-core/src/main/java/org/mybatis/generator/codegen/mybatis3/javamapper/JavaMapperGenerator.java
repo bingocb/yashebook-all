@@ -91,7 +91,7 @@ public class JavaMapperGenerator extends AbstractJavaClientGenerator {
 		interfaze.addJavaDocLine("/**");
 		interfaze.addJavaDocLine("* " + type.getShortName());
 		interfaze.addJavaDocLine("* ");
-		interfaze.addJavaDocLine("* @author liangc [cc14514@icloud.com]");
+		interfaze.addJavaDocLine("* @author chenbin");
 		interfaze.addJavaDocLine("* @version v1.0");
 		interfaze.addJavaDocLine("* @copy pet");
 		interfaze.addJavaDocLine("* @date " + new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));

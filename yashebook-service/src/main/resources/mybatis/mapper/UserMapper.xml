@@ -1,0 +1,521 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yashebook.domain.mapper.UserMapper" >
+  <resultMap id="BaseResultMap" type="com.yashebook.domain.po.User" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="birthday" property="birthday" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="current_score" property="currentScore" jdbcType="INTEGER" />
+    <result column="delete_flag" property="deleteFlag" jdbcType="INTEGER" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="head_img" property="headImg" jdbcType="VARCHAR" />
+    <result column="last_ip" property="lastIp" jdbcType="VARCHAR" />
+    <result column="last_time" property="lastTime" jdbcType="TIMESTAMP" />
+    <result column="login_name" property="loginName" jdbcType="VARCHAR" />
+    <result column="login_pwd" property="loginPwd" jdbcType="VARCHAR" />
+    <result column="modify_time" property="modifyTime" jdbcType="TIMESTAMP" />
+    <result column="open_id" property="openId" jdbcType="VARCHAR" />
+    <result column="pay_pwd" property="payPwd" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="qq" property="qq" jdbcType="VARCHAR" />
+    <result column="total_score" property="totalScore" jdbcType="INTEGER" />
+    <result column="true_name" property="trueName" jdbcType="VARCHAR" />
+    <result column="user_id" property="userId" jdbcType="VARCHAR" />
+    <result column="user_money_sn" property="userMoneySn" jdbcType="VARCHAR" />
+    <result column="user_name" property="userName" jdbcType="VARCHAR" />
+    <result column="user_sex" property="userSex" jdbcType="INTEGER" />
+    <result column="user_source" property="userSource" jdbcType="INTEGER" />
+    <result column="user_status" property="userStatus" jdbcType="INTEGER" />
+    <result column="user_type" property="userType" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, birthday, create_time, current_score, delete_flag, email, head_img, last_ip, 
+    last_time, login_name, login_pwd, modify_time, open_id, pay_pwd, phone, qq, total_score, 
+    true_name, user_id, user_money_sn, user_name, user_sex, user_source, user_status, 
+    user_type
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.yashebook.domain.po.UserCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from ys_user
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="mysqlOffset != null and mysqlLength != null" >
+      <![CDATA[ limit #{mysqlOffset} , #{mysqlLength} ]]>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from ys_user
+    where id = #{id}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from ys_user
+    where id = #{id}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.yashebook.domain.po.UserCriteria" >
+    delete from ys_user
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.yashebook.domain.po.User" >
+    insert into ys_user (id, birthday, create_time, current_score, delete_flag, email, 
+      head_img, last_ip, last_time, login_name, login_pwd, modify_time, open_id, 
+      pay_pwd, phone, qq, total_score, true_name, user_id, user_money_sn, 
+      user_name, user_sex, user_source, user_status, user_type)
+    values (#{id}, #{birthday}, #{createTime}, #{currentScore}, #{deleteFlag}, #{email}, 
+      #{headImg}, #{lastIp}, #{lastTime}, #{loginName}, #{loginPwd}, #{modifyTime}, #{openId}, 
+      #{payPwd}, #{phone}, #{qq}, #{totalScore}, #{trueName}, #{userId}, #{userMoneySn}, 
+      #{userName}, #{userSex}, #{userSource}, #{userStatus}, #{userType})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yashebook.domain.po.User" >
+    insert into ys_user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="birthday != null" >
+        birthday,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="currentScore != null" >
+        current_score,
+      </if>
+      <if test="deleteFlag != null" >
+        delete_flag,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+      <if test="headImg != null" >
+        head_img,
+      </if>
+      <if test="lastIp != null" >
+        last_ip,
+      </if>
+      <if test="lastTime != null" >
+        last_time,
+      </if>
+      <if test="loginName != null" >
+        login_name,
+      </if>
+      <if test="loginPwd != null" >
+        login_pwd,
+      </if>
+      <if test="modifyTime != null" >
+        modify_time,
+      </if>
+      <if test="openId != null" >
+        open_id,
+      </if>
+      <if test="payPwd != null" >
+        pay_pwd,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="qq != null" >
+        qq,
+      </if>
+      <if test="totalScore != null" >
+        total_score,
+      </if>
+      <if test="trueName != null" >
+        true_name,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="userMoneySn != null" >
+        user_money_sn,
+      </if>
+      <if test="userName != null" >
+        user_name,
+      </if>
+      <if test="userSex != null" >
+        user_sex,
+      </if>
+      <if test="userSource != null" >
+        user_source,
+      </if>
+      <if test="userStatus != null" >
+        user_status,
+      </if>
+      <if test="userType != null" >
+        user_type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id},
+      </if>
+      <if test="birthday != null" >
+        #{birthday},
+      </if>
+      <if test="createTime != null" >
+        #{createTime},
+      </if>
+      <if test="currentScore != null" >
+        #{currentScore},
+      </if>
+      <if test="deleteFlag != null" >
+        #{deleteFlag},
+      </if>
+      <if test="email != null" >
+        #{email},
+      </if>
+      <if test="headImg != null" >
+        #{headImg},
+      </if>
+      <if test="lastIp != null" >
+        #{lastIp},
+      </if>
+      <if test="lastTime != null" >
+        #{lastTime},
+      </if>
+      <if test="loginName != null" >
+        #{loginName},
+      </if>
+      <if test="loginPwd != null" >
+        #{loginPwd},
+      </if>
+      <if test="modifyTime != null" >
+        #{modifyTime},
+      </if>
+      <if test="openId != null" >
+        #{openId},
+      </if>
+      <if test="payPwd != null" >
+        #{payPwd},
+      </if>
+      <if test="phone != null" >
+        #{phone},
+      </if>
+      <if test="qq != null" >
+        #{qq},
+      </if>
+      <if test="totalScore != null" >
+        #{totalScore},
+      </if>
+      <if test="trueName != null" >
+        #{trueName},
+      </if>
+      <if test="userId != null" >
+        #{userId},
+      </if>
+      <if test="userMoneySn != null" >
+        #{userMoneySn},
+      </if>
+      <if test="userName != null" >
+        #{userName},
+      </if>
+      <if test="userSex != null" >
+        #{userSex},
+      </if>
+      <if test="userSource != null" >
+        #{userSource},
+      </if>
+      <if test="userStatus != null" >
+        #{userStatus},
+      </if>
+      <if test="userType != null" >
+        #{userType},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.yashebook.domain.po.UserCriteria" resultType="java.lang.Integer" >
+    select count(*) from ys_user
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update ys_user
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id},
+      </if>
+      <if test="record.birthday != null" >
+        birthday = #{record.birthday},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime},
+      </if>
+      <if test="record.currentScore != null" >
+        current_score = #{record.currentScore},
+      </if>
+      <if test="record.deleteFlag != null" >
+        delete_flag = #{record.deleteFlag},
+      </if>
+      <if test="record.email != null" >
+        email = #{record.email},
+      </if>
+      <if test="record.headImg != null" >
+        head_img = #{record.headImg},
+      </if>
+      <if test="record.lastIp != null" >
+        last_ip = #{record.lastIp},
+      </if>
+      <if test="record.lastTime != null" >
+        last_time = #{record.lastTime},
+      </if>
+      <if test="record.loginName != null" >
+        login_name = #{record.loginName},
+      </if>
+      <if test="record.loginPwd != null" >
+        login_pwd = #{record.loginPwd},
+      </if>
+      <if test="record.modifyTime != null" >
+        modify_time = #{record.modifyTime},
+      </if>
+      <if test="record.openId != null" >
+        open_id = #{record.openId},
+      </if>
+      <if test="record.payPwd != null" >
+        pay_pwd = #{record.payPwd},
+      </if>
+      <if test="record.phone != null" >
+        phone = #{record.phone},
+      </if>
+      <if test="record.qq != null" >
+        qq = #{record.qq},
+      </if>
+      <if test="record.totalScore != null" >
+        total_score = #{record.totalScore},
+      </if>
+      <if test="record.trueName != null" >
+        true_name = #{record.trueName},
+      </if>
+      <if test="record.userId != null" >
+        user_id = #{record.userId},
+      </if>
+      <if test="record.userMoneySn != null" >
+        user_money_sn = #{record.userMoneySn},
+      </if>
+      <if test="record.userName != null" >
+        user_name = #{record.userName},
+      </if>
+      <if test="record.userSex != null" >
+        user_sex = #{record.userSex},
+      </if>
+      <if test="record.userSource != null" >
+        user_source = #{record.userSource},
+      </if>
+      <if test="record.userStatus != null" >
+        user_status = #{record.userStatus},
+      </if>
+      <if test="record.userType != null" >
+        user_type = #{record.userType},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update ys_user
+    set id = #{record.id},
+      birthday = #{record.birthday},
+      create_time = #{record.createTime},
+      current_score = #{record.currentScore},
+      delete_flag = #{record.deleteFlag},
+      email = #{record.email},
+      head_img = #{record.headImg},
+      last_ip = #{record.lastIp},
+      last_time = #{record.lastTime},
+      login_name = #{record.loginName},
+      login_pwd = #{record.loginPwd},
+      modify_time = #{record.modifyTime},
+      open_id = #{record.openId},
+      pay_pwd = #{record.payPwd},
+      phone = #{record.phone},
+      qq = #{record.qq},
+      total_score = #{record.totalScore},
+      true_name = #{record.trueName},
+      user_id = #{record.userId},
+      user_money_sn = #{record.userMoneySn},
+      user_name = #{record.userName},
+      user_sex = #{record.userSex},
+      user_source = #{record.userSource},
+      user_status = #{record.userStatus},
+      user_type = #{record.userType}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yashebook.domain.po.User" >
+    update ys_user
+    <set >
+      <if test="birthday != null" >
+        birthday = #{birthday},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime},
+      </if>
+      <if test="currentScore != null" >
+        current_score = #{currentScore},
+      </if>
+      <if test="deleteFlag != null" >
+        delete_flag = #{deleteFlag},
+      </if>
+      <if test="email != null" >
+        email = #{email},
+      </if>
+      <if test="headImg != null" >
+        head_img = #{headImg},
+      </if>
+      <if test="lastIp != null" >
+        last_ip = #{lastIp},
+      </if>
+      <if test="lastTime != null" >
+        last_time = #{lastTime},
+      </if>
+      <if test="loginName != null" >
+        login_name = #{loginName},
+      </if>
+      <if test="loginPwd != null" >
+        login_pwd = #{loginPwd},
+      </if>
+      <if test="modifyTime != null" >
+        modify_time = #{modifyTime},
+      </if>
+      <if test="openId != null" >
+        open_id = #{openId},
+      </if>
+      <if test="payPwd != null" >
+        pay_pwd = #{payPwd},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone},
+      </if>
+      <if test="qq != null" >
+        qq = #{qq},
+      </if>
+      <if test="totalScore != null" >
+        total_score = #{totalScore},
+      </if>
+      <if test="trueName != null" >
+        true_name = #{trueName},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId},
+      </if>
+      <if test="userMoneySn != null" >
+        user_money_sn = #{userMoneySn},
+      </if>
+      <if test="userName != null" >
+        user_name = #{userName},
+      </if>
+      <if test="userSex != null" >
+        user_sex = #{userSex},
+      </if>
+      <if test="userSource != null" >
+        user_source = #{userSource},
+      </if>
+      <if test="userStatus != null" >
+        user_status = #{userStatus},
+      </if>
+      <if test="userType != null" >
+        user_type = #{userType},
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yashebook.domain.po.User" >
+    update ys_user
+    set birthday = #{birthday},
+      create_time = #{createTime},
+      current_score = #{currentScore},
+      delete_flag = #{deleteFlag},
+      email = #{email},
+      head_img = #{headImg},
+      last_ip = #{lastIp},
+      last_time = #{lastTime},
+      login_name = #{loginName},
+      login_pwd = #{loginPwd},
+      modify_time = #{modifyTime},
+      open_id = #{openId},
+      pay_pwd = #{payPwd},
+      phone = #{phone},
+      qq = #{qq},
+      total_score = #{totalScore},
+      true_name = #{trueName},
+      user_id = #{userId},
+      user_money_sn = #{userMoneySn},
+      user_name = #{userName},
+      user_sex = #{userSex},
+      user_source = #{userSource},
+      user_status = #{userStatus},
+      user_type = #{userType}
+    where id = #{id}
+  </update>
+</mapper>

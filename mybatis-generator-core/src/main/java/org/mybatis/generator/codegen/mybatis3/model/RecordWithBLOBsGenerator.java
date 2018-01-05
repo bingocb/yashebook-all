@@ -59,7 +59,7 @@ public class RecordWithBLOBsGenerator extends AbstractJavaGenerator {
 		topLevelClass.addJavaDocLine("* " + table.getDomainObjectName());
 		topLevelClass.addJavaDocLine("* table:" + table.getIntrospectedTableName());
 		topLevelClass.addJavaDocLine("* ");
-		topLevelClass.addJavaDocLine("* @author liangc [cc14514@icloud.com]");
+		topLevelClass.addJavaDocLine("* @author chenbin");
 		topLevelClass.addJavaDocLine("* @version v1.0");
 		topLevelClass.addJavaDocLine("* @copy pet");
 		topLevelClass.addJavaDocLine("*/");
