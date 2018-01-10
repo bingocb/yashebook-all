@@ -16,7 +16,7 @@ import java.util.Map;
 @RestController
 public class TestController {
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
+    @RequestMapping(value = "/test", method = RequestMethod.GET)
     public String test(){
         ReceiveParam receive = new ReceiveParam();
         receive.setMethod("book_find");//book:实体名    _:分隔符    find:方法名

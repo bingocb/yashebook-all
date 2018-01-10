@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+	<head>
+		<meta charset="utf-8"/>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+		<title>登录</title>
+		<link rel="stylesheet" href="../static/plugins/layui/css/layui.css" media="all" />
+		<link rel="stylesheet" href="../static/css/login.css" />
+	</head>
+
+	<body class="beg-login-bg">
+		<div class="beg-login-box">
+			<header>
+				<h1>哑舍图书</h1>
+			</header>
+			<div class="beg-login-main">
+				<p th:if="${param.logout}" class="bg-warning">已注销</p>
+				<p th:if="${param.error}" class="bg-danger">有错误，请重试</p>
+				<form th:action="@{/login}" action="/login" method="post" class="layui-form"><input name="__RequestVerificationToken" type="hidden" value="fkfh8D89BFqTdrE2iiSdG_L781RSRtdWOH411poVUWhxzA5MzI8es07g6KPYQh9Log-xf84pIR2RIAEkOokZL3Ee3UKmX0Jc8bW8jOdhqo81" />
+					<div class="layui-form-item">
+						<label class="beg-login-icon">
+                        <i class="layui-icon">&#xe612;</i>
+                    </label>
+						<input type="text" name="username" lay-verify="userName" autocomplete="off" placeholder="这里输入登录名" class="layui-input">
+					</div>
+					<div class="layui-form-item">
+						<label class="beg-login-icon">
+                        <i class="layui-icon">&#xe642;</i>
+                    </label>
+						<input type="password" name="password" lay-verify="password" autocomplete="off" placeholder="这里输入密码" class="layui-input">
+					</div>
+					<div class="layui-form-item">
+						<div class="beg-pull-center">
+							<button class="layui-btn layui-btn-primary" lay-submit lay-filter="login">
+                            <i class="layui-icon">&#xe650;</i> 登录
+                        </button>
+						</div>
+						<div class="beg-clear"></div>
+					</div>
+				</form>
+			</div>
+			<footer>
+				<p></p>
+			</footer>
+		</div>
+		<script type="text/javascript" src="../static/plugins/layui/layui.js"></script>
+		<script>
+            layui.use('form', function(){
+                var form = layui.form;
+
+                //监听提交
+                form.on('submit(formDemo)', function(data){
+                    layer.msg(JSON.stringify(data.field));
+                    return false;
+                });
+            });
+		</script>
+	</body>
+
+</html>
