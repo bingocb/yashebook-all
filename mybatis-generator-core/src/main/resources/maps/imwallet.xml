@@ -16,16 +16,10 @@
 
         <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://127.0.0.1:3306/yashebookstore?characterEncoding=UTF-8" userId="root" password="123456"/>
 
-        <javaModelGenerator targetPackage="com.yashebook.domain.po" targetProject="/Users/binchen/IdeaProjects/GitHub/yashebook-all/yashebook-service/src/main/java"/>
-        <sqlMapGenerator targetPackage="mybatis.mapper" targetProject="/Users/binchen/IdeaProjects/GitHub/yashebook-all/yashebook-service/src/main/resources"/>
-        <javaClientGenerator targetPackage="com.yashebook.domain.mapper" targetProject="/Users/binchen/IdeaProjects/GitHub/yashebook-all/yashebook-service/src/main/java" type="XMLMAPPER"/>
-        <!--
-        <table domainObjectName="MoveTask" tableName="move_task"/>
-        <table domainObjectName="MoveTaskItem" tableName="move_task_item"/>
-        <table domainObjectName="MoveTaskLog" tableName="move_task_log"/>
-        <table domainObjectName="CloudFilePo" tableName="cloud_file_list"/>
-        -->
-        <table domainObjectName="Book" tableName="ys_books"/>
+        <javaModelGenerator targetPackage="com.yashebook.domain.po" targetProject="/Users/binchen/IdeaProjects/GitHub/yashebook-all/yashebook-util/src/main/java"/>
+        <sqlMapGenerator targetPackage="mybatis.mapper" targetProject="/Users/binchen/IdeaProjects/GitHub/yashebook-all/yashebook-util/src/main/resources"/>
+        <javaClientGenerator targetPackage="com.yashebook.domain.mapper" targetProject="/Users/binchen/IdeaProjects/GitHub/yashebook-all/yashebook-util/src/main/java" type="XMLMAPPER"/>
+        <table domainObjectName="Book" tableName="ys_book"/>
         <table domainObjectName="Appraise" tableName="ys_appraise"/>
         <table domainObjectName="Areas" tableName="ys_areas"/>
         <table domainObjectName="BookType" tableName="ys_book_type"/>
