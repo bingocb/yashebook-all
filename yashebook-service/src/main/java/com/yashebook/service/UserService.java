@@ -22,10 +22,10 @@ public class UserService {
     private UserMapper userMapper;
 
     public String findUserByName(Map<String, Object> map) {
-        String userName = map.get("userName").toString();
+        String loginName = map.get("loginName").toString();
         UserCriteria criteria = new UserCriteria();
         UserCriteria.Criteria cri = criteria.createCriteria();
-        cri.andUserNameEqualTo(userName);
+        cri.andLoginNameEqualTo(loginName);
 
         List<User> users = userMapper.selectByExample(criteria);
         return new Success(true, users).toString();
