@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.yashebook.bo.ReceiveParam;
 import com.yashebook.domain.po.Book;
+import com.yashebook.domain.po.User;
 import com.yashebook.rpc.RPCServiceClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -40,6 +41,9 @@ public class TestApi {
         param.setArgs(map);
         String json = JSON.toJSONString(param);
         String r = new RPCServiceClient("127.0.0.1", 40313).call("", System.currentTimeMillis() + "", json);
-        return r;
+        JSONObject jsonObj = JSONObject.parseObject(r);
+        String entity = jsonObj.getString("entity");
+        List<User> users = JSON.parseArray(entity, User.class);
+        return users.get(0).toString();
     }
 }
