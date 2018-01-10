@@ -30,4 +30,16 @@ public class TestApi {
         String r = new RPCServiceClient("127.0.0.1", 40313).call("", System.currentTimeMillis() + "", json);
         return r;
     }
+
+    @GetMapping(value = "findUser")
+    public String findUserByName() {
+        ReceiveParam param = new ReceiveParam();
+        param.setMethod("user_findUserByName");
+        Map<String, Object> map = new HashMap<>();
+        map.put("userName", "Bingo");
+        param.setArgs(map);
+        String json = JSON.toJSONString(param);
+        String r = new RPCServiceClient("127.0.0.1", 40313).call("", System.currentTimeMillis() + "", json);
+        return r;
+    }
 }

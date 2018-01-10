@@ -35,6 +35,9 @@ public class MainService {
                     clazzObj = SpringUtils.getBean(BookService.class);
                 } else if (method.startsWith(Methods.booktype.toString())) {
 
+                } else if (method.startsWith(Methods.user.toString())) {
+                    clazz = UserService.class;
+                    clazzObj = SpringUtils.getBean(UserService.class);
                 }
                 method = method.substring(method.lastIndexOf("_") + 1, method.length());
                 Method m = null;
