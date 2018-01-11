@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yashebook.domain.mapper.SysUserMapper" >
+  <resultMap id="BaseResultMap" type="com.yashebook.domain.po.SysUser" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="username" property="username" jdbcType="VARCHAR" />
+    <result column="login_name" property="loginName" jdbcType="VARCHAR" />
+    <result column="user_mobile" property="userMobile" jdbcType="VARCHAR" />
+    <result column="user_email" property="userEmail" jdbcType="VARCHAR" />
+    <result column="is_online" property="isOnline" jdbcType="VARCHAR" />
+    <result column="login_count" property="loginCount" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, password, username, login_name, user_mobile, user_email, is_online, login_count
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.yashebook.domain.po.SysUserCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sys_user
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="mysqlOffset != null and mysqlLength != null" >
+      <![CDATA[ limit #{mysqlOffset} , #{mysqlLength} ]]>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_user
+    where id = #{id}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from sys_user
+    where id = #{id}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.yashebook.domain.po.SysUserCriteria" >
+    delete from sys_user
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.yashebook.domain.po.SysUser" >
+    insert into sys_user (id, password, username, login_name, user_mobile, user_email, 
+      is_online, login_count)
+    values (#{id}, #{password}, #{username}, #{loginName}, #{userMobile}, #{userEmail}, 
+      #{isOnline}, #{loginCount})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yashebook.domain.po.SysUser" >
+    insert into sys_user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="password != null" >
+        password,
+      </if>
+      <if test="username != null" >
+        username,
+      </if>
+      <if test="loginName != null" >
+        login_name,
+      </if>
+      <if test="userMobile != null" >
+        user_mobile,
+      </if>
+      <if test="userEmail != null" >
+        user_email,
+      </if>
+      <if test="isOnline != null" >
+        is_online,
+      </if>
+      <if test="loginCount != null" >
+        login_count,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id},
+      </if>
+      <if test="password != null" >
+        #{password},
+      </if>
+      <if test="username != null" >
+        #{username},
+      </if>
+      <if test="loginName != null" >
+        #{loginName},
+      </if>
+      <if test="userMobile != null" >
+        #{userMobile},
+      </if>
+      <if test="userEmail != null" >
+        #{userEmail},
+      </if>
+      <if test="isOnline != null" >
+        #{isOnline},
+      </if>
+      <if test="loginCount != null" >
+        #{loginCount},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.yashebook.domain.po.SysUserCriteria" resultType="java.lang.Integer" >
+    select count(*) from sys_user
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update sys_user
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id},
+      </if>
+      <if test="record.password != null" >
+        password = #{record.password},
+      </if>
+      <if test="record.username != null" >
+        username = #{record.username},
+      </if>
+      <if test="record.loginName != null" >
+        login_name = #{record.loginName},
+      </if>
+      <if test="record.userMobile != null" >
+        user_mobile = #{record.userMobile},
+      </if>
+      <if test="record.userEmail != null" >
+        user_email = #{record.userEmail},
+      </if>
+      <if test="record.isOnline != null" >
+        is_online = #{record.isOnline},
+      </if>
+      <if test="record.loginCount != null" >
+        login_count = #{record.loginCount},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update sys_user
+    set id = #{record.id},
+      password = #{record.password},
+      username = #{record.username},
+      login_name = #{record.loginName},
+      user_mobile = #{record.userMobile},
+      user_email = #{record.userEmail},
+      is_online = #{record.isOnline},
+      login_count = #{record.loginCount}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yashebook.domain.po.SysUser" >
+    update sys_user
+    <set >
+      <if test="password != null" >
+        password = #{password},
+      </if>
+      <if test="username != null" >
+        username = #{username},
+      </if>
+      <if test="loginName != null" >
+        login_name = #{loginName},
+      </if>
+      <if test="userMobile != null" >
+        user_mobile = #{userMobile},
+      </if>
+      <if test="userEmail != null" >
+        user_email = #{userEmail},
+      </if>
+      <if test="isOnline != null" >
+        is_online = #{isOnline},
+      </if>
+      <if test="loginCount != null" >
+        login_count = #{loginCount},
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yashebook.domain.po.SysUser" >
+    update sys_user
+    set password = #{password},
+      username = #{username},
+      login_name = #{loginName},
+      user_mobile = #{userMobile},
+      user_email = #{userEmail},
+      is_online = #{isOnline},
+      login_count = #{loginCount}
+    where id = #{id}
+  </update>
+</mapper>

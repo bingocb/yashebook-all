@@ -19,7 +19,8 @@
         <javaModelGenerator targetPackage="com.yashebook.domain.po" targetProject="/Users/binchen/IdeaProjects/GitHub/yashebook-all/yashebook-util/src/main/java"/>
         <sqlMapGenerator targetPackage="mybatis.mapper" targetProject="/Users/binchen/IdeaProjects/GitHub/yashebook-all/yashebook-util/src/main/resources"/>
         <javaClientGenerator targetPackage="com.yashebook.domain.mapper" targetProject="/Users/binchen/IdeaProjects/GitHub/yashebook-all/yashebook-util/src/main/java" type="XMLMAPPER"/>
-        <table domainObjectName="Book" tableName="ys_book"/>
+
+        <!--<table domainObjectName="Book" tableName="ys_book"/>
         <table domainObjectName="Appraise" tableName="ys_appraise"/>
         <table domainObjectName="Areas" tableName="ys_areas"/>
         <table domainObjectName="BookType" tableName="ys_book_type"/>
@@ -35,8 +36,12 @@
         <table domainObjectName="Express" tableName="ys_express"/>
         <table domainObjectName="Follows" tableName="ys_follows"/>
         <table domainObjectName="Images" tableName="ys_images"/>
-        <table domainObjectName="Orders" tableName="ys_orders"/>
+        <table domainObjectName="Orders" tableName="ys_orders"/>-->
 
+        <table domainObjectName="SysMenu" tableName="sys_menu"/>
+        <table domainObjectName="SysRole" tableName="sys_role"/>
+        <table domainObjectName="SysUser" tableName="sys_user"/>
+        <table domainObjectName="SysUserRoles" tableName="sys_user_roles"/>
 
 
     </context>
