@@ -1,8 +1,12 @@
 package com.yashebook.domain.po;
 
 import java.io.Serializable;
+import java.util.Collection;
+
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 /**
 * SysUser
@@ -13,8 +17,7 @@ import org.apache.commons.lang.builder.ToStringStyle;
 * @copy pet
 * @date 2018-01-11 15:07:42
 */
-public class SysUser implements Serializable {
-    private static final long serialVersionUID = 1L;
+public class SysUser implements UserDetails {
 
     private Long id;
 
@@ -40,6 +43,11 @@ public class SysUser implements Serializable {
         this.id = id;
     }
 
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return null;
+    }
+
     public String getPassword() {
         return password;
     }
@@ -50,6 +58,26 @@ public class SysUser implements Serializable {
 
     public String getUsername() {
         return username;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
     }
 
     public void setUsername(String username) {
