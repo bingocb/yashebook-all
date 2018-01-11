@@ -3,13 +3,13 @@
 <mapper namespace="com.yashebook.domain.mapper.SysMenuMapper" >
   <resultMap id="BaseResultMap" type="com.yashebook.domain.po.SysMenu" >
     <id column="id" property="id" jdbcType="BIGINT" />
-    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="menu_name" property="menuName" jdbcType="VARCHAR" />
     <result column="f_id" property="fId" jdbcType="BIGINT" />
-    <result column="url" property="url" jdbcType="VARCHAR" />
-    <result column="icon" property="icon" jdbcType="VARCHAR" />
+    <result column="menu_url" property="menuUrl" jdbcType="VARCHAR" />
+    <result column="menu_icon" property="menuIcon" jdbcType="VARCHAR" />
     <result column="is_show" property="isShow" jdbcType="VARCHAR" />
-    <result column="permission" property="permission" jdbcType="VARCHAR" />
-    <result column="order" property="order" jdbcType="INTEGER" />
+    <result column="menu_permission" property="menuPermission" jdbcType="VARCHAR" />
+    <result column="menu_order" property="menuOrder" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -70,7 +70,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, name, f_id, url, icon, is_show, permission, order
+    id, menu_name, f_id, menu_url, menu_icon, is_show, menu_permission, menu_order
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.yashebook.domain.po.SysMenuCriteria" >
     select
@@ -106,10 +106,10 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.yashebook.domain.po.SysMenu" >
-    insert into sys_menu (id, name, f_id, url, icon, is_show, permission, order
-      )
-    values (#{id}, #{name}, #{fId}, #{url}, #{icon}, #{isShow}, #{permission}, #{order}
-      )
+    insert into sys_menu (id, menu_name, f_id, menu_url, menu_icon, is_show, menu_permission, 
+      menu_order)
+    values (#{id}, #{menuName}, #{fId}, #{menuUrl}, #{menuIcon}, #{isShow}, #{menuPermission}, 
+      #{menuOrder})
   </insert>
   <insert id="insertSelective" parameterType="com.yashebook.domain.po.SysMenu" >
     insert into sys_menu
@@ -117,52 +117,52 @@
       <if test="id != null" >
         id,
       </if>
-      <if test="name != null" >
-        name,
+      <if test="menuName != null" >
+        menu_name,
       </if>
       <if test="fId != null" >
         f_id,
       </if>
-      <if test="url != null" >
-        url,
+      <if test="menuUrl != null" >
+        menu_url,
       </if>
-      <if test="icon != null" >
-        icon,
+      <if test="menuIcon != null" >
+        menu_icon,
       </if>
       <if test="isShow != null" >
         is_show,
       </if>
-      <if test="permission != null" >
-        permission,
+      <if test="menuPermission != null" >
+        menu_permission,
       </if>
-      <if test="order != null" >
-        order,
+      <if test="menuOrder != null" >
+        menu_order,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         #{id},
       </if>
-      <if test="name != null" >
-        #{name},
+      <if test="menuName != null" >
+        #{menuName},
       </if>
       <if test="fId != null" >
         #{fId},
       </if>
-      <if test="url != null" >
-        #{url},
+      <if test="menuUrl != null" >
+        #{menuUrl},
       </if>
-      <if test="icon != null" >
-        #{icon},
+      <if test="menuIcon != null" >
+        #{menuIcon},
       </if>
       <if test="isShow != null" >
         #{isShow},
       </if>
-      <if test="permission != null" >
-        #{permission},
+      <if test="menuPermission != null" >
+        #{menuPermission},
       </if>
-      <if test="order != null" >
-        #{order},
+      <if test="menuOrder != null" >
+        #{menuOrder},
       </if>
     </trim>
   </insert>
@@ -178,26 +178,26 @@
       <if test="record.id != null" >
         id = #{record.id},
       </if>
-      <if test="record.name != null" >
-        name = #{record.name},
+      <if test="record.menuName != null" >
+        menu_name = #{record.menuName},
       </if>
       <if test="record.fId != null" >
         f_id = #{record.fId},
       </if>
-      <if test="record.url != null" >
-        url = #{record.url},
+      <if test="record.menuUrl != null" >
+        menu_url = #{record.menuUrl},
       </if>
-      <if test="record.icon != null" >
-        icon = #{record.icon},
+      <if test="record.menuIcon != null" >
+        menu_icon = #{record.menuIcon},
       </if>
       <if test="record.isShow != null" >
         is_show = #{record.isShow},
       </if>
-      <if test="record.permission != null" >
-        permission = #{record.permission},
+      <if test="record.menuPermission != null" >
+        menu_permission = #{record.menuPermission},
       </if>
-      <if test="record.order != null" >
-        order = #{record.order},
+      <if test="record.menuOrder != null" >
+        menu_order = #{record.menuOrder},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -207,13 +207,13 @@
   <update id="updateByExample" parameterType="map" >
     update sys_menu
     set id = #{record.id},
-      name = #{record.name},
+      menu_name = #{record.menuName},
       f_id = #{record.fId},
-      url = #{record.url},
-      icon = #{record.icon},
+      menu_url = #{record.menuUrl},
+      menu_icon = #{record.menuIcon},
       is_show = #{record.isShow},
-      permission = #{record.permission},
-      order = #{record.order}
+      menu_permission = #{record.menuPermission},
+      menu_order = #{record.menuOrder}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -221,39 +221,39 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.yashebook.domain.po.SysMenu" >
     update sys_menu
     <set >
-      <if test="name != null" >
-        name = #{name},
+      <if test="menuName != null" >
+        menu_name = #{menuName},
       </if>
       <if test="fId != null" >
         f_id = #{fId},
       </if>
-      <if test="url != null" >
-        url = #{url},
+      <if test="menuUrl != null" >
+        menu_url = #{menuUrl},
       </if>
-      <if test="icon != null" >
-        icon = #{icon},
+      <if test="menuIcon != null" >
+        menu_icon = #{menuIcon},
       </if>
       <if test="isShow != null" >
         is_show = #{isShow},
       </if>
-      <if test="permission != null" >
-        permission = #{permission},
+      <if test="menuPermission != null" >
+        menu_permission = #{menuPermission},
       </if>
-      <if test="order != null" >
-        order = #{order},
+      <if test="menuOrder != null" >
+        menu_order = #{menuOrder},
       </if>
     </set>
     where id = #{id}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.yashebook.domain.po.SysMenu" >
     update sys_menu
-    set name = #{name},
+    set menu_name = #{menuName},
       f_id = #{fId},
-      url = #{url},
-      icon = #{icon},
+      menu_url = #{menuUrl},
+      menu_icon = #{menuIcon},
       is_show = #{isShow},
-      permission = #{permission},
-      order = #{order}
+      menu_permission = #{menuPermission},
+      menu_order = #{menuOrder}
     where id = #{id}
   </update>
 </mapper>

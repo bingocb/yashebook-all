@@ -11,18 +11,18 @@ import org.apache.commons.lang.builder.ToStringStyle;
 * @author chenbin
 * @version v1.0
 * @copy pet
-* @date 2018-01-11 11:49:49
+* @date 2018-01-11 15:07:42
 */
 public class SysRole implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private Long id;
 
-    private String name;
+    private String roleName;
 
-    private String desc;
+    private String roleDesc;
 
-    private String order;
+    private String roleOrder;
 
     public Long getId() {
         return id;
@@ -32,28 +32,28 @@ public class SysRole implements Serializable {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getRoleName() {
+        return roleName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setRoleName(String roleName) {
+        this.roleName = roleName;
     }
 
-    public String getDesc() {
-        return desc;
+    public String getRoleDesc() {
+        return roleDesc;
     }
 
-    public void setDesc(String desc) {
-        this.desc = desc;
+    public void setRoleDesc(String roleDesc) {
+        this.roleDesc = roleDesc;
     }
 
-    public String getOrder() {
-        return order;
+    public String getRoleOrder() {
+        return roleOrder;
     }
 
-    public void setOrder(String order) {
-        this.order = order;
+    public void setRoleOrder(String roleOrder) {
+        this.roleOrder = roleOrder;
     }
 
     @Override
@@ -69,9 +69,9 @@ public class SysRole implements Serializable {
         }
         SysRole other = (SysRole) that;
         return (this.getId() == null ? other.getId() == null : this.getId().equals(other.getId()))
-            && (this.getName() == null ? other.getName() == null : this.getName().equals(other.getName()))
-            && (this.getDesc() == null ? other.getDesc() == null : this.getDesc().equals(other.getDesc()))
-            && (this.getOrder() == null ? other.getOrder() == null : this.getOrder().equals(other.getOrder()));
+            && (this.getRoleName() == null ? other.getRoleName() == null : this.getRoleName().equals(other.getRoleName()))
+            && (this.getRoleDesc() == null ? other.getRoleDesc() == null : this.getRoleDesc().equals(other.getRoleDesc()))
+            && (this.getRoleOrder() == null ? other.getRoleOrder() == null : this.getRoleOrder().equals(other.getRoleOrder()));
     }
 
     @Override
@@ -79,9 +79,9 @@ public class SysRole implements Serializable {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((getId() == null) ? 0 : getId().hashCode());
-        result = prime * result + ((getName() == null) ? 0 : getName().hashCode());
-        result = prime * result + ((getDesc() == null) ? 0 : getDesc().hashCode());
-        result = prime * result + ((getOrder() == null) ? 0 : getOrder().hashCode());
+        result = prime * result + ((getRoleName() == null) ? 0 : getRoleName().hashCode());
+        result = prime * result + ((getRoleDesc() == null) ? 0 : getRoleDesc().hashCode());
+        result = prime * result + ((getRoleOrder() == null) ? 0 : getRoleOrder().hashCode());
         return result;
     }
 

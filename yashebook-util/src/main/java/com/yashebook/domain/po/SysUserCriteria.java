@@ -9,7 +9,7 @@ import java.util.List;
 * @author chenbin
 * @version v1.0
 * @copy pet
-* @date 2018-01-11 11:49:49
+* @date 2018-01-11 15:07:42
 */
 public class SysUserCriteria {
     protected String orderByClause;

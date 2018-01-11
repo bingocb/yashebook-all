@@ -11,26 +11,26 @@ import org.apache.commons.lang.builder.ToStringStyle;
 * @author chenbin
 * @version v1.0
 * @copy pet
-* @date 2018-01-11 11:49:49
+* @date 2018-01-11 15:07:42
 */
 public class SysMenu implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private Long id;
 
-    private String name;
+    private String menuName;
 
     private Long fId;
 
-    private String url;
+    private String menuUrl;
 
-    private String icon;
+    private String menuIcon;
 
     private String isShow;
 
-    private String permission;
+    private String menuPermission;
 
-    private Integer order;
+    private Integer menuOrder;
 
     public Long getId() {
         return id;
@@ -40,12 +40,12 @@ public class SysMenu implements Serializable {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getMenuName() {
+        return menuName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setMenuName(String menuName) {
+        this.menuName = menuName;
     }
 
     public Long getfId() {
@@ -56,20 +56,20 @@ public class SysMenu implements Serializable {
         this.fId = fId;
     }
 
-    public String getUrl() {
-        return url;
+    public String getMenuUrl() {
+        return menuUrl;
     }
 
-    public void setUrl(String url) {
-        this.url = url;
+    public void setMenuUrl(String menuUrl) {
+        this.menuUrl = menuUrl;
     }
 
-    public String getIcon() {
-        return icon;
+    public String getMenuIcon() {
+        return menuIcon;
     }
 
-    public void setIcon(String icon) {
-        this.icon = icon;
+    public void setMenuIcon(String menuIcon) {
+        this.menuIcon = menuIcon;
     }
 
     public String getIsShow() {
@@ -80,20 +80,20 @@ public class SysMenu implements Serializable {
         this.isShow = isShow;
     }
 
-    public String getPermission() {
-        return permission;
+    public String getMenuPermission() {
+        return menuPermission;
     }
 
-    public void setPermission(String permission) {
-        this.permission = permission;
+    public void setMenuPermission(String menuPermission) {
+        this.menuPermission = menuPermission;
     }
 
-    public Integer getOrder() {
-        return order;
+    public Integer getMenuOrder() {
+        return menuOrder;
     }
 
-    public void setOrder(Integer order) {
-        this.order = order;
+    public void setMenuOrder(Integer menuOrder) {
+        this.menuOrder = menuOrder;
     }
 
     @Override
@@ -109,13 +109,13 @@ public class SysMenu implements Serializable {
         }
         SysMenu other = (SysMenu) that;
         return (this.getId() == null ? other.getId() == null : this.getId().equals(other.getId()))
-            && (this.getName() == null ? other.getName() == null : this.getName().equals(other.getName()))
+            && (this.getMenuName() == null ? other.getMenuName() == null : this.getMenuName().equals(other.getMenuName()))
             && (this.getfId() == null ? other.getfId() == null : this.getfId().equals(other.getfId()))
-            && (this.getUrl() == null ? other.getUrl() == null : this.getUrl().equals(other.getUrl()))
-            && (this.getIcon() == null ? other.getIcon() == null : this.getIcon().equals(other.getIcon()))
+            && (this.getMenuUrl() == null ? other.getMenuUrl() == null : this.getMenuUrl().equals(other.getMenuUrl()))
+            && (this.getMenuIcon() == null ? other.getMenuIcon() == null : this.getMenuIcon().equals(other.getMenuIcon()))
             && (this.getIsShow() == null ? other.getIsShow() == null : this.getIsShow().equals(other.getIsShow()))
-            && (this.getPermission() == null ? other.getPermission() == null : this.getPermission().equals(other.getPermission()))
-            && (this.getOrder() == null ? other.getOrder() == null : this.getOrder().equals(other.getOrder()));
+            && (this.getMenuPermission() == null ? other.getMenuPermission() == null : this.getMenuPermission().equals(other.getMenuPermission()))
+            && (this.getMenuOrder() == null ? other.getMenuOrder() == null : this.getMenuOrder().equals(other.getMenuOrder()));
     }
 
     @Override
@@ -123,13 +123,13 @@ public class SysMenu implements Serializable {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((getId() == null) ? 0 : getId().hashCode());
-        result = prime * result + ((getName() == null) ? 0 : getName().hashCode());
+        result = prime * result + ((getMenuName() == null) ? 0 : getMenuName().hashCode());
         result = prime * result + ((getfId() == null) ? 0 : getfId().hashCode());
-        result = prime * result + ((getUrl() == null) ? 0 : getUrl().hashCode());
-        result = prime * result + ((getIcon() == null) ? 0 : getIcon().hashCode());
+        result = prime * result + ((getMenuUrl() == null) ? 0 : getMenuUrl().hashCode());
+        result = prime * result + ((getMenuIcon() == null) ? 0 : getMenuIcon().hashCode());
         result = prime * result + ((getIsShow() == null) ? 0 : getIsShow().hashCode());
-        result = prime * result + ((getPermission() == null) ? 0 : getPermission().hashCode());
-        result = prime * result + ((getOrder() == null) ? 0 : getOrder().hashCode());
+        result = prime * result + ((getMenuPermission() == null) ? 0 : getMenuPermission().hashCode());
+        result = prime * result + ((getMenuOrder() == null) ? 0 : getMenuOrder().hashCode());
         return result;
     }
 

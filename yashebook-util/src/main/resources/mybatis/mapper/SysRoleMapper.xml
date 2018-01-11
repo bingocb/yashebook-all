@@ -3,9 +3,9 @@
 <mapper namespace="com.yashebook.domain.mapper.SysRoleMapper" >
   <resultMap id="BaseResultMap" type="com.yashebook.domain.po.SysRole" >
     <id column="id" property="id" jdbcType="BIGINT" />
-    <result column="name" property="name" jdbcType="VARCHAR" />
-    <result column="desc" property="desc" jdbcType="VARCHAR" />
-    <result column="order" property="order" jdbcType="VARCHAR" />
+    <result column="role_name" property="roleName" jdbcType="VARCHAR" />
+    <result column="role_desc" property="roleDesc" jdbcType="VARCHAR" />
+    <result column="role_order" property="roleOrder" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -66,7 +66,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, name, desc, order
+    id, role_name, role_desc, role_order
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.yashebook.domain.po.SysRoleCriteria" >
     select
@@ -102,8 +102,8 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.yashebook.domain.po.SysRole" >
-    insert into sys_role (id, name, desc, order)
-    values (#{id}, #{name}, #{desc}, #{order})
+    insert into sys_role (id, role_name, role_desc, role_order)
+    values (#{id}, #{roleName}, #{roleDesc}, #{roleOrder})
   </insert>
   <insert id="insertSelective" parameterType="com.yashebook.domain.po.SysRole" >
     insert into sys_role
@@ -111,28 +111,28 @@
       <if test="id != null" >
         id,
       </if>
-      <if test="name != null" >
-        name,
+      <if test="roleName != null" >
+        role_name,
       </if>
-      <if test="desc != null" >
-        desc,
+      <if test="roleDesc != null" >
+        role_desc,
       </if>
-      <if test="order != null" >
-        order,
+      <if test="roleOrder != null" >
+        role_order,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         #{id},
       </if>
-      <if test="name != null" >
-        #{name},
+      <if test="roleName != null" >
+        #{roleName},
       </if>
-      <if test="desc != null" >
-        #{desc},
+      <if test="roleDesc != null" >
+        #{roleDesc},
       </if>
-      <if test="order != null" >
-        #{order},
+      <if test="roleOrder != null" >
+        #{roleOrder},
       </if>
     </trim>
   </insert>
@@ -148,14 +148,14 @@
       <if test="record.id != null" >
         id = #{record.id},
       </if>
-      <if test="record.name != null" >
-        name = #{record.name},
+      <if test="record.roleName != null" >
+        role_name = #{record.roleName},
       </if>
-      <if test="record.desc != null" >
-        desc = #{record.desc},
+      <if test="record.roleDesc != null" >
+        role_desc = #{record.roleDesc},
       </if>
-      <if test="record.order != null" >
-        order = #{record.order},
+      <if test="record.roleOrder != null" >
+        role_order = #{record.roleOrder},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -165,9 +165,9 @@
   <update id="updateByExample" parameterType="map" >
     update sys_role
     set id = #{record.id},
-      name = #{record.name},
-      desc = #{record.desc},
-      order = #{record.order}
+      role_name = #{record.roleName},
+      role_desc = #{record.roleDesc},
+      role_order = #{record.roleOrder}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -175,23 +175,23 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.yashebook.domain.po.SysRole" >
     update sys_role
     <set >
-      <if test="name != null" >
-        name = #{name},
+      <if test="roleName != null" >
+        role_name = #{roleName},
       </if>
-      <if test="desc != null" >
-        desc = #{desc},
+      <if test="roleDesc != null" >
+        role_desc = #{roleDesc},
       </if>
-      <if test="order != null" >
-        order = #{order},
+      <if test="roleOrder != null" >
+        role_order = #{roleOrder},
       </if>
     </set>
     where id = #{id}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.yashebook.domain.po.SysRole" >
     update sys_role
-    set name = #{name},
-      desc = #{desc},
-      order = #{order}
+    set role_name = #{roleName},
+      role_desc = #{roleDesc},
+      role_order = #{roleOrder}
     where id = #{id}
   </update>
 </mapper>
