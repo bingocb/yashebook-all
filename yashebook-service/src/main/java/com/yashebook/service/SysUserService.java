@@ -1,5 +1,6 @@
 package com.yashebook.service;
 
+import com.yashebook.bo.Page;
 import com.yashebook.bo.Success;
 import com.yashebook.domain.mapper.SysUserMapper;
 import com.yashebook.domain.po.SysUser;
@@ -24,8 +25,18 @@ public class SysUserService {
         SysUserCriteria criteria = new SysUserCriteria();
         SysUserCriteria.Criteria cri = criteria.createCriteria();
         cri.andUsernameEqualTo(username);
-
         List<SysUser> users = sysUserMapper.selectByExample(criteria);
         return new Success(true, users).toString();
+    }
+
+    public String findList(Map<String, Object> map){
+        SysUserCriteria criteria = new SysUserCriteria();
+        int pageSize = Integer.parseInt(map.get("pageSize").toString());
+        int pageStart = (Integer.parseInt(map.get("pageIndex").toString()) - 1) * pageSize;
+        List<SysUser> count = sysUserMapper.selectByExample(criteria);
+        criteria.setMysqlOffset(pageStart);
+        criteria.setMysqlLength(pageSize);
+        List<SysUser> users = sysUserMapper.selectByExample(criteria);
+        return new Page(true, users , count.size()).toString();
     }
 }
