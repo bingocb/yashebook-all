@@ -37,4 +37,10 @@ public class SysUserController {
         String r = new RPCServiceClient("127.0.0.1", 40313).call("", System.currentTimeMillis() + "", json);
         return r;
     }
+
+    @RequestMapping("/userForm")
+    public String userForm(Model model){
+
+        return "sys/userForm";
+    }
 }

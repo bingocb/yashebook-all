@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 	<head>
 		<meta charset="UTF-8">
@@ -9,12 +9,11 @@
 		<link rel="stylesheet" href="../static/plugins/font-awesome/css/font-awesome.min.css">
 		<link rel="stylesheet" href="../static/css/table.css" />
 	</head>
-
 	<body>
 		<div class="admin-main">
 
 			<blockquote class="layui-elem-quote">
-				<a href="javascript:;" class="layui-btn layui-btn-small" id="add">
+				<a th:href="@{/userForm}" class="layui-btn layui-btn-small" id="add">
 					<i class="layui-icon">&#xe608;</i> 添加信息
 				</a>
 				<a href="#" class="layui-btn layui-btn-small" id="import">
