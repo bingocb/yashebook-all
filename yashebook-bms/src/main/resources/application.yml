@@ -1,0 +1,11 @@
+server:
+  port: 8081
+spring:
+  mvc:
+    view:
+      prefix: classpath:/templates/
+      suffix: .html
+    static-path-pattern: /static/**
+  thymeleaf:
+    mode: LEGACYHTML5
+    cache: false
