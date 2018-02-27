@@ -41,6 +41,9 @@ public class MainService {
                 } else if (method.startsWith(Methods.sysmenu.toString())) {
                     clazz = SysMenuService.class;
                     clazzObj = SpringUtils.getBean(SysMenuService.class);
+                } else if (method.startsWith(Methods.user.toString())) {
+                    clazz = UserService.class;
+                    clazzObj = SpringUtils.getBean(UserService.class);
                 }
                 method = method.substring(method.lastIndexOf("_") + 1, method.length());
                 Method m = null;
